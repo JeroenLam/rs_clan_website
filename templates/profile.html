@@ -46,29 +46,205 @@
             <div class="profile-section skills-section">
                 <h3>Skills</h3>
                 <div class="skills-grid">
-                {% set skill_order = [0, 3, 14, 2, 16, 13, 1, 15, 10, 4, 17, 7, 5, 12, 11, 6, 9, 8, 20, 18, 19, 22, 21, 23, 24, 25, 26, 27, 28] %}
-                {% for skill_id in skill_order %}
-                    {% set skill = None %}
-                    {% for s in profile_data.skillvalues %}
-                        {% if s.id == skill_id %}
-                            {% set skill = s %}
-                        {% endif %}
+                    <!-- First row -->
+                    {% for skill_id in [0, 3, 14] %}
+                        {% for skill in profile_data.skillvalues %}
+                            {% if skill.id == skill_id %}
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <img src="{{ url_for('static', filename='img/skill_icon_' + (skill.id|get_skill_name|lower) + '.png') }}" alt="{{ skill.id|get_skill_name }}">
+                                </div>
+                                <div class="skill-info">
+                                    <div class="skill-level">{{ skill.level }}</div>
+                                </div>
+                                <div class="skill-details">
+                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
+                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
                     {% endfor %}
-                    {% if skill %}
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <img src="{{ url_for('static', filename='img/skill_icon_' + (skill.id|get_skill_name|lower) + '.png') }}" alt="{{ skill.id|get_skill_name }}">
-                        </div>
-                        <div class="skill-info">
-                            <div class="skill-level">{{ skill.level }}</div>
-                        </div>
-                        <div class="skill-details">
-                            <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
-                            <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
-                        </div>
-                    </div>
-                    {% endif %}
-                {% endfor %}
+                    
+                    <!-- Second row -->
+                    {% for skill_id in [2, 16, 13] %}
+                        {% for skill in profile_data.skillvalues %}
+                            {% if skill.id == skill_id %}
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <img src="{{ url_for('static', filename='img/skill_icon_' + (skill.id|get_skill_name|lower) + '.png') }}" alt="{{ skill.id|get_skill_name }}">
+                                </div>
+                                <div class="skill-info">
+                                    <div class="skill-level">{{ skill.level }}</div>
+                                </div>
+                                <div class="skill-details">
+                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
+                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    
+                    <!-- Third row -->
+                    {% for skill_id in [1, 15, 10] %}
+                        {% for skill in profile_data.skillvalues %}
+                            {% if skill.id == skill_id %}
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <img src="{{ url_for('static', filename='img/skill_icon_' + (skill.id|get_skill_name|lower) + '.png') }}" alt="{{ skill.id|get_skill_name }}">
+                                </div>
+                                <div class="skill-info">
+                                    <div class="skill-level">{{ skill.level }}</div>
+                                </div>
+                                <div class="skill-details">
+                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
+                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    
+                    <!-- Fourth row -->
+                    {% for skill_id in [4, 17, 7] %}
+                        {% for skill in profile_data.skillvalues %}
+                            {% if skill.id == skill_id %}
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <img src="{{ url_for('static', filename='img/skill_icon_' + (skill.id|get_skill_name|lower) + '.png') }}" alt="{{ skill.id|get_skill_name }}">
+                                </div>
+                                <div class="skill-info">
+                                    <div class="skill-level">{{ skill.level }}</div>
+                                </div>
+                                <div class="skill-details">
+                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
+                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    
+                    <!-- Fifth row -->
+                    {% for skill_id in [5, 12, 11] %}
+                        {% for skill in profile_data.skillvalues %}
+                            {% if skill.id == skill_id %}
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <img src="{{ url_for('static', filename='img/skill_icon_' + (skill.id|get_skill_name|lower) + '.png') }}" alt="{{ skill.id|get_skill_name }}">
+                                </div>
+                                <div class="skill-info">
+                                    <div class="skill-level">{{ skill.level }}</div>
+                                </div>
+                                <div class="skill-details">
+                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
+                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    
+                    <!-- Sixth row -->
+                    {% for skill_id in [6, 9, 8] %}
+                        {% for skill in profile_data.skillvalues %}
+                            {% if skill.id == skill_id %}
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <img src="{{ url_for('static', filename='img/skill_icon_' + (skill.id|get_skill_name|lower) + '.png') }}" alt="{{ skill.id|get_skill_name }}">
+                                </div>
+                                <div class="skill-info">
+                                    <div class="skill-level">{{ skill.level }}</div>
+                                </div>
+                                <div class="skill-details">
+                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
+                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    
+                    <!-- Seventh row -->
+                    {% for skill_id in [20, 18, 19] %}
+                        {% for skill in profile_data.skillvalues %}
+                            {% if skill.id == skill_id %}
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <img src="{{ url_for('static', filename='img/skill_icon_' + (skill.id|get_skill_name|lower) + '.png') }}" alt="{{ skill.id|get_skill_name }}">
+                                </div>
+                                <div class="skill-info">
+                                    <div class="skill-level">{{ skill.level }}</div>
+                                </div>
+                                <div class="skill-details">
+                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
+                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    
+                    <!-- Eighth row -->
+                    {% for skill_id in [22, 21, 23] %}
+                        {% for skill in profile_data.skillvalues %}
+                            {% if skill.id == skill_id %}
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <img src="{{ url_for('static', filename='img/skill_icon_' + (skill.id|get_skill_name|lower) + '.png') }}" alt="{{ skill.id|get_skill_name }}">
+                                </div>
+                                <div class="skill-info">
+                                    <div class="skill-level">{{ skill.level }}</div>
+                                </div>
+                                <div class="skill-details">
+                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
+                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    
+                    <!-- Ninth row -->
+                    {% for skill_id in [24, 25, 26] %}
+                        {% for skill in profile_data.skillvalues %}
+                            {% if skill.id == skill_id %}
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <img src="{{ url_for('static', filename='img/skill_icon_' + (skill.id|get_skill_name|lower) + '.png') }}" alt="{{ skill.id|get_skill_name }}">
+                                </div>
+                                <div class="skill-info">
+                                    <div class="skill-level">{{ skill.level }}</div>
+                                </div>
+                                <div class="skill-details">
+                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
+                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    
+                    <!-- Tenth row (partial) -->
+                    {% for skill_id in [27, 28] %}
+                        {% for skill in profile_data.skillvalues %}
+                            {% if skill.id == skill_id %}
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <img src="{{ url_for('static', filename='img/skill_icon_' + (skill.id|get_skill_name|lower) + '.png') }}" alt="{{ skill.id|get_skill_name }}">
+                                </div>
+                                <div class="skill-info">
+                                    <div class="skill-level">{{ skill.level }}</div>
+                                </div>
+                                <div class="skill-details">
+                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
+                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
