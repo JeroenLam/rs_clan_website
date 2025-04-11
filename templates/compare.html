@@ -65,12 +65,7 @@
                         {% endfor %}
                     {% endif %}
                     
-                    {% if skill1 %}
-                        {% set is_higher = (skill2 and skill1.level > skill2.level) or (not skill2) %}
-                    {% else %}
-                        {% set is_higher = false %}
-                    {% endif %}
-                    <div class="skill-item {% if is_higher and profile_data2 %}skill-higher{% endif %}" 
+                    <div class="skill-item" 
                          onmouseover="showSkillDetails('{{ skill_id|get_skill_name }}', {{ skill1.level }}, {{ skill1.xp }}, {{ skill1.rank }})">
                         <div class="skill-icon">
                             <img src="{{ url_for('static', filename='img/21px-' + (skill_id|get_skill_name) + '-icon.webp') }}" alt="{{ skill_id|get_skill_name }}">
@@ -141,12 +136,7 @@
                         {% endfor %}
                     {% endif %}
                     
-                    {% if skill2 %}
-                        {% set is_higher = (skill1 and skill2.level > skill1.level) or (not skill1) %}
-                    {% else %}
-                        {% set is_higher = false %}
-                    {% endif %}
-                    <div class="skill-item {% if is_higher and profile_data1 %}skill-higher{% endif %}" 
+                    <div class="skill-item" 
                          onmouseover="showSkillDetails('{{ skill_id|get_skill_name }}', {{ skill2.level }}, {{ skill2.xp }}, {{ skill2.rank }})">
                         <div class="skill-icon">
                             <img src="{{ url_for('static', filename='img/21px-' + (skill_id|get_skill_name) + '-icon.webp') }}" alt="{{ skill_id|get_skill_name }}">
