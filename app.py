@@ -63,4 +63,7 @@ def get_skill_name(skill_id):
     return SKILL_NAMES.get(skill_id, f"Skill {skill_id}")
 
 if __name__ == '__main__':
+    # To run with Docker:
+    # 1. Build: docker compose build
+    # 2. Run: docker compose up
     app.run(host='0.0.0.0', port=5000, debug=True)
