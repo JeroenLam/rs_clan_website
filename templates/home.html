@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <h1>Welcome to Game Tools & Overviews</h1>
+    <p>Your one-stop portal for game information, tools, and statistics</p>
+</section>
+
+<section class="features">
+    <div class="feature-card">
+        <h2>Game Tools</h2>
+        <p>Access various tools to enhance your gameplay experience</p>
+        <a href="/tools" class="btn">Explore Tools</a>
+    </div>
+    
+    <div class="feature-card">
+        <h2>Game Overview</h2>
+        <p>Learn about game mechanics, characters, and more</p>
+        <a href="/overview" class="btn">View Overview</a>
+    </div>
+    
+    <div class="feature-card">
+        <h2>Game Stats</h2>
+        <p>Check out detailed statistics and analytics</p>
+        <a href="/stats" class="btn">See Stats</a>
+    </div>
+</section>
+{% endblock %}
