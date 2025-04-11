@@ -318,8 +318,19 @@ footer {
 
 .profile-layout {
     display: grid;
-    grid-template-columns: 1fr 0.5fr;
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
+}
+
+.profile-left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.profile-right-column {
+    display: flex;
+    flex-direction: column;
 }
 
 .skills-section {
@@ -504,6 +515,11 @@ footer {
     
     .profile-layout {
         grid-template-columns: 1fr;
+    }
+    
+    .profile-left-column,
+    .profile-right-column {
+        width: 100%;
     }
     
     .skills-grid {

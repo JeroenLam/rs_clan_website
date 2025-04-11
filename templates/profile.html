@@ -27,35 +27,36 @@
     {% if profile_data %}
     <div class="profile-data">
         <div class="profile-layout">
-            <div class="profile-header">
-                <div class="profile-header-top">
-                    <div class="total-level-icon">
-                        <img src="{{ url_for('static', filename='img/21px-Statistics.png') }}" alt="Total Level">
+            <div class="profile-left-column">
+                <div class="profile-header">
+                    <div class="profile-header-top">
+                        <div class="total-level-icon">
+                            <img src="{{ url_for('static', filename='img/21px-Statistics.png') }}" alt="Total Level">
+                        </div>
+                        <div class="profile-header-info">
+                            <h2>{{ profile_data.name }}</h2>
+                            <p>Combat Level: {{ profile_data.combatlevel }}</p>
+                            <p>Total Skill: {{ profile_data.totalskill }}</p>
+                            <p>Total XP: {{ "{:,}".format(profile_data.totalxp) }}</p>
+                            <p>Quests Completed: {{ profile_data.questscomplete }}</p>
+                            <p>Quests Started: {{ profile_data.questsstarted }}</p>
+                            <p>Quests Not Started: {{ profile_data.questsnotstarted }}</p>
+                            <p>Rank: {{ profile_data.rank }}</p>
+                        </div>
                     </div>
-                    <div class="profile-header-info">
-                        <h2>{{ profile_data.name }}</h2>
-                        <p>Combat Level: {{ profile_data.combatlevel }}</p>
-                        <p>Total Skill: {{ profile_data.totalskill }}</p>
-                        <p>Total XP: {{ "{:,}".format(profile_data.totalxp) }}</p>
-                        <p>Quests Completed: {{ profile_data.questscomplete }}</p>
-                        <p>Quests Started: {{ profile_data.questsstarted }}</p>
-                        <p>Quests Not Started: {{ profile_data.questsnotstarted }}</p>
-                        <p>Rank: {{ profile_data.rank }}</p>
+                    <div class="skill-details-box" id="skillDetailsBox">
+                        <div class="skill-details-content">
+                            <h4 id="skillName">Hover over a skill</h4>
+                            <p id="skillLevel">Level: -</p>
+                            <p id="skillXP">XP: -</p>
+                            <p id="skillRank">Rank: -</p>
+                        </div>
                     </div>
                 </div>
-                <div class="skill-details-box" id="skillDetailsBox">
-                    <div class="skill-details-content">
-                        <h4 id="skillName">Hover over a skill</h4>
-                        <p id="skillLevel">Level: -</p>
-                        <p id="skillXP">XP: -</p>
-                        <p id="skillRank">Rank: -</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="profile-section skills-section">
-                <h3>Skills</h3>
-                <div class="skills-grid">
+                <div class="profile-section skills-section">
+                    <h3>Skills</h3>
+                    <div class="skills-grid">
                     <!-- First row -->
                     {% for skill_id in [0, 3, 14] %}
                         {% for skill in profile_data.skillvalues %}
@@ -215,22 +216,24 @@
                             {% endif %}
                         {% endfor %}
                     {% endfor %}
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="profile-section">
-            <h3>Recent Activities</h3>
-            <ul class="activities-list">
-                {% for activity in profile_data.activities %}
-                <li class="activity-item">
-                    <span class="activity-date">{{ activity.date }}</span>
-                    <span class="activity-text">{{ activity.text }}</span>
-                    <span class="activity-details">{{ activity.details }}</span>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+            
+            <div class="profile-right-column">
+                <div class="profile-section">
+                    <h3>Recent Activities</h3>
+                    <ul class="activities-list">
+                        {% for activity in profile_data.activities %}
+                        <li class="activity-item">
+                            <span class="activity-date">{{ activity.date }}</span>
+                            <span class="activity-text">{{ activity.text }}</span>
+                            <span class="activity-details">{{ activity.details }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
     </div>
     {% endif %}
 </section>
