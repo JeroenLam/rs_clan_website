@@ -26,25 +26,26 @@
 
     {% if profile_data %}
     <div class="profile-data">
-        <div class="profile-header">
-            <div class="profile-header-top">
-                <div class="total-level-icon">
-                    <img src="{{ url_for('static', filename='img/21px-Statistics.png') }}" alt="Total Level">
-                </div>
-                <div class="profile-header-info">
-                    <h2>{{ profile_data.name }}</h2>
-                    <p>Combat Level: {{ profile_data.combatlevel }}</p>
-                    <p>Total Skill: {{ profile_data.totalskill }}</p>
-                    <p>Total XP: {{ "{:,}".format(profile_data.totalxp) }}</p>
-                    <p>Quests Completed: {{ profile_data.questscomplete }}</p>
-                    <p>Rank: {{ profile_data.rank }}</p>
+        <div class="profile-layout">
+            <div class="profile-header">
+                <div class="profile-header-top">
+                    <div class="total-level-icon">
+                        <img src="{{ url_for('static', filename='img/21px-Statistics.png') }}" alt="Total Level">
+                    </div>
+                    <div class="profile-header-info">
+                        <h2>{{ profile_data.name }}</h2>
+                        <p>Combat Level: {{ profile_data.combatlevel }}</p>
+                        <p>Total Skill: {{ profile_data.totalskill }}</p>
+                        <p>Total XP: {{ "{:,}".format(profile_data.totalxp) }}</p>
+                        <p>Quests Completed: {{ profile_data.questscomplete }}</p>
+                        <p>Rank: {{ profile_data.rank }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="profile-section">
-            <h3>Skills</h3>
-            <div class="skills-grid">
+            <div class="profile-section skills-section">
+                <h3>Skills</h3>
+                <div class="skills-grid">
                 {% for skill in profile_data.skillvalues %}
                 <div class="skill-item">
                     <div class="skill-icon">
@@ -60,6 +61,8 @@
                     </div>
                 </div>
                 {% endfor %}
+            </div>
+                </div>
             </div>
         </div>
 
