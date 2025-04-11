@@ -29,46 +29,41 @@
     
     <script>
         function showSkillDetails(name, level, xp, rank) {
-            document.getElementById('skillName').textContent = name;
-            document.getElementById('skillLevel').textContent = 'Level: ' + level;
-            document.getElementById('skillXP').textContent = 'XP: ' + xp.toLocaleString();
-            document.getElementById('skillRank').textContent = 'Rank: ' + rank.toLocaleString();
-            document.getElementById('skillDetailsBox').classList.add('visible');
+            // Check if we're on the profile page or compare page
+            if (document.getElementById('skillName')) {
+                // Profile page
+                document.getElementById('skillName').textContent = name;
+                document.getElementById('skillLevel').textContent = 'Level: ' + level;
+                document.getElementById('skillXP').textContent = 'XP: ' + xp.toLocaleString();
+                document.getElementById('skillRank').textContent = 'Rank: ' + rank.toLocaleString();
+                document.getElementById('skillDetailsBox').classList.add('visible');
+            } else if (document.getElementById('skillName1')) {
+                // Compare page - determine which column based on event target
+                const column = event.currentTarget.closest('.compare-column');
+                const isFirstColumn = column === document.querySelector('.compare-column:first-child');
+                
+                const boxId = isFirstColumn ? 'skillDetailsBox1' : 'skillDetailsBox2';
+                const nameId = isFirstColumn ? 'skillName1' : 'skillName2';
+                const levelId = isFirstColumn ? 'skillLevel1' : 'skillLevel2';
+                const xpId = isFirstColumn ? 'skillXP1' : 'skillXP2';
+                const rankId = isFirstColumn ? 'skillRank1' : 'skillRank2';
+                
+                document.getElementById(nameId).textContent = name;
+                document.getElementById(levelId).textContent = 'Level: ' + level;
+                document.getElementById(xpId).textContent = 'XP: ' + xp.toLocaleString();
+                document.getElementById(rankId).textContent = 'Rank: ' + rank.toLocaleString();
+                document.getElementById(boxId).classList.add('visible');
+            }
         }
         
         function hideSkillDetails() {
-            document.getElementById('skillDetailsBox').classList.remove('visible');
-        }
-        
-        function showCompareDetails(name, level1, xp1, rank1, level2, xp2, rank2) {
-            document.getElementById('compareSkillName').textContent = name;
-            
-            // Player 1 details
-            document.getElementById('compareLevel1').textContent = 'Level: ' + (level1 || '-');
-            document.getElementById('compareXP1').textContent = 'XP: ' + (xp1 ? xp1.toLocaleString() : '-');
-            document.getElementById('compareRank1').textContent = 'Rank: ' + (rank1 ? rank1.toLocaleString() : '-');
-            
-            // Player 2 details
-            document.getElementById('compareLevel2').textContent = 'Level: ' + (level2 || '-');
-            document.getElementById('compareXP2').textContent = 'XP: ' + (xp2 ? xp2.toLocaleString() : '-');
-            document.getElementById('compareRank2').textContent = 'Rank: ' + (rank2 ? rank2.toLocaleString() : '-');
-            
-            // Calculate difference
-            if (level1 && level2) {
-                const levelDiff = level1 - level2;
-                const xpDiff = xp1 - xp2;
-                
-                let diffText = 'Level difference: ' + Math.abs(levelDiff) + ' ';
-                diffText += levelDiff > 0 ? '(Player 1 higher)' : levelDiff < 0 ? '(Player 2 higher)' : '(Equal)';
-                diffText += ' | XP difference: ' + Math.abs(xpDiff).toLocaleString();
-                
-                document.getElementById('compareDifference').textContent = diffText;
-            } else {
-                document.getElementById('compareDifference').textContent = 'Cannot compare - missing data';
+            // Check if we're on the profile page or compare page
+            if (document.getElementById('skillDetailsBox')) {
+                document.getElementById('skillDetailsBox').classList.remove('visible');
+            } else if (document.getElementById('skillDetailsBox1')) {
+                document.getElementById('skillDetailsBox1').classList.remove('visible');
+                document.getElementById('skillDetailsBox2').classList.remove('visible');
             }
-            
-            document.getElementById('compareDetailsBox').classList.add('visible');
-            console.log('Showing compare details for: ' + name);
         }
     </script>
 </body>

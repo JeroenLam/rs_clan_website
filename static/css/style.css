@@ -472,30 +472,39 @@ footer {
 }
 
 /* Compare Page */
-.compare-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: space-between;
+.compare-form-single {
+    width: 100%;
 }
 
-.compare-input {
-    flex: 1;
-    min-width: 200px;
+.compare-form-single .form-group {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 0.5rem;
 }
 
-.compare-input label {
+.compare-form-single label {
     font-weight: bold;
 }
 
-.compare-input input {
+.compare-form-single input {
     padding: 0.5rem;
     border: 1px solid #ddd;
     border-radius: 4px;
     width: 100%;
+}
+
+.compare-form-single button {
+    align-self: flex-end;
+}
+
+.compare-instructions {
+    text-align: center;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-top: 2rem;
+    color: #7f8c8d;
 }
 
 .compare-layout {
