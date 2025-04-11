@@ -57,7 +57,7 @@
                     {% if skill %}
                     <div class="skill-item">
                         <div class="skill-icon">
-                            <img src="{{ url_for('static', filename='img/21px-' + (skill.id|get_skill_name) + '.png') }}" alt="{{ skill.id|get_skill_name }}">
+                            <img src="{{ url_for('static', filename='img/skill_icon_' + (skill.id|get_skill_name|lower) + '.png') }}" alt="{{ skill.id|get_skill_name }}">
                         </div>
                         <div class="skill-info">
                             <div class="skill-level">{{ skill.level }}</div>
@@ -70,8 +70,8 @@
                     {% endif %}
                 {% endfor %}
                 </div>
-                </div>
             </div>
+        </div>
 
         <div class="profile-section">
             <h3>Recent Activities</h3>
