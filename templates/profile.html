@@ -29,7 +29,7 @@
         <div class="profile-header">
             <div class="profile-header-top">
                 <div class="total-level-icon">
-                    <img src="{{ url_for('static', filename='img/total_level_icon.png') }}" alt="Total Level">
+                    <img src="{{ url_for('static', filename='img/21px-Statistics.png') }}" alt="Total Level">
                 </div>
                 <div class="profile-header-info">
                     <h2>{{ profile_data.name }}</h2>
@@ -48,7 +48,7 @@
                 {% for skill in profile_data.skillvalues %}
                 <div class="skill-item">
                     <div class="skill-icon">
-                        <img src="{{ url_for('static', filename='img/skill_icon_' + (skill.id|get_skill_name|lower) + '.png') }}" alt="{{ skill.id|get_skill_name }}">
+                        <img src="{{ url_for('static', filename='img/21px-' + (skill.id|get_skill_name) + '-icon.webp') }}" alt="{{ skill.id|get_skill_name }}">
                     </div>
                     <div class="skill-info">
                         <div class="skill-name">{{ skill.id|get_skill_name }}</div>
