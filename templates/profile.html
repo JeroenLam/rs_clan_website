@@ -41,10 +41,6 @@
                         <p>Rank: {{ profile_data.rank }}</p>
                     </div>
                 </div>
-            </div>
-
-            <div class="profile-section skills-section">
-                <h3>Skills</h3>
                 <div class="skill-details-box" id="skillDetailsBox">
                     <div class="skill-details-content">
                         <h4 id="skillName">Hover over a skill</h4>
@@ -53,6 +49,10 @@
                         <p id="skillRank">Rank: -</p>
                     </div>
                 </div>
+            </div>
+
+            <div class="profile-section skills-section">
+                <h3>Skills</h3>
                 <div class="skills-grid">
                     <!-- First row -->
                     {% for skill_id in [0, 3, 14] %}
