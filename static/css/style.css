@@ -318,7 +318,7 @@ footer {
 
 .profile-layout {
     display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
+    grid-template-columns: 0.6fr 1.4fr;
     gap: 2rem;
 }
 
@@ -350,16 +350,6 @@ footer {
     gap: 1.5rem;
 }
 
-.total-level-icon {
-    width: 64px;
-    height: 64px;
-    flex-shrink: 0;
-}
-
-.total-level-icon img {
-    max-width: 100%;
-    max-height: 100%;
-}
 
 .profile-header-info {
     flex: 1;
