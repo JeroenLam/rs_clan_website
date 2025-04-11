@@ -46,21 +46,30 @@
             <div class="profile-section skills-section">
                 <h3>Skills</h3>
                 <div class="skills-grid">
-                {% for skill in profile_data.skillvalues %}
-                <div class="skill-item">
-                    <div class="skill-icon">
-                        <img src="{{ url_for('static', filename='img/21px-' + (skill.id|get_skill_name) + '-icon.webp') }}" alt="{{ skill.id|get_skill_name }}">
+                {% set skill_order = [0, 3, 14, 2, 16, 13, 1, 15, 10, 4, 17, 7, 5, 12, 11, 6, 9, 8, 20, 18, 19, 22, 21, 23, 24, 25, 26, 27, 28] %}
+                {% for skill_id in skill_order %}
+                    {% set skill = None %}
+                    {% for s in profile_data.skillvalues %}
+                        {% if s.id == skill_id %}
+                            {% set skill = s %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if skill %}
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <img src="{{ url_for('static', filename='img/21px-' + (skill.id|get_skill_name) + '-icon.webp') }}" alt="{{ skill.id|get_skill_name }}">
+                        </div>
+                        <div class="skill-info">
+                            <div class="skill-level">{{ skill.level }}</div>
+                        </div>
+                        <div class="skill-details">
+                            <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
+                            <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
+                        </div>
                     </div>
-                    <div class="skill-info">
-                        <div class="skill-level">{{ skill.level }}</div>
-                    </div>
-                    <div class="skill-details">
-                        <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
-                        <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
-                    </div>
-                </div>
+                    {% endif %}
                 {% endfor %}
-            </div>
+                </div>
                 </div>
             </div>
         </div>
