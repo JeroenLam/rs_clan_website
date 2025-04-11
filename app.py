@@ -12,13 +12,6 @@ def home():
 def tools():
     return render_template('tools.html', title='Game Tools')
 
-@app.route('/overview')
-def overview():
-    return render_template('overview.html', title='Game Overview')
-
-@app.route('/stats')
-def stats():
-    return render_template('stats.html', title='Game Stats')
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
