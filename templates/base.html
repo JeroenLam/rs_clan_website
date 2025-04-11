@@ -14,6 +14,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/tools">Tools</a></li>
                 <li><a href="/profile">RS Profile</a></li>
+                <li><a href="/compare">Compare Profiles</a></li>
             </ul>
         </nav>
     </header>
@@ -37,6 +38,36 @@
         
         function hideSkillDetails() {
             document.getElementById('skillDetailsBox').classList.remove('visible');
+        }
+        
+        function showCompareDetails(name, level1, xp1, rank1, level2, xp2, rank2) {
+            document.getElementById('compareSkillName').textContent = name;
+            
+            // Player 1 details
+            document.getElementById('compareLevel1').textContent = 'Level: ' + (level1 || '-');
+            document.getElementById('compareXP1').textContent = 'XP: ' + (xp1 ? xp1.toLocaleString() : '-');
+            document.getElementById('compareRank1').textContent = 'Rank: ' + (rank1 ? rank1.toLocaleString() : '-');
+            
+            // Player 2 details
+            document.getElementById('compareLevel2').textContent = 'Level: ' + (level2 || '-');
+            document.getElementById('compareXP2').textContent = 'XP: ' + (xp2 ? xp2.toLocaleString() : '-');
+            document.getElementById('compareRank2').textContent = 'Rank: ' + (rank2 ? rank2.toLocaleString() : '-');
+            
+            // Calculate difference
+            if (level1 && level2) {
+                const levelDiff = level1 - level2;
+                const xpDiff = xp1 - xp2;
+                
+                let diffText = 'Level difference: ' + Math.abs(levelDiff) + ' ';
+                diffText += levelDiff > 0 ? '(Player 1 higher)' : levelDiff < 0 ? '(Player 2 higher)' : '(Equal)';
+                diffText += ' | XP difference: ' + Math.abs(xpDiff).toLocaleString();
+                
+                document.getElementById('compareDifference').textContent = diffText;
+            } else {
+                document.getElementById('compareDifference').textContent = 'Cannot compare - missing data';
+            }
+            
+            document.getElementById('compareDetailsBox').classList.add('visible');
         }
     </script>
 </body>

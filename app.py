@@ -40,6 +40,51 @@ def profile():
     return render_template('profile.html', title='RuneScape Profile', 
                           profile_data=profile_data, username=username, error=error)
 
+@app.route('/compare', methods=['GET', 'POST'])
+def compare():
+    profile_data1 = None
+    profile_data2 = None
+    username1 = None
+    username2 = None
+    error = None
+    
+    if request.method == 'POST':
+        username1 = request.form.get('username1')
+        username2 = request.form.get('username2')
+        
+        if username1 and username2:
+            try:
+                # Fetch first profile
+                url1 = f"https://apps.runescape.com/runemetrics/profile/profile?user={username1}&activities=20"
+                response1 = requests.get(url1)
+                
+                # Fetch second profile
+                url2 = f"https://apps.runescape.com/runemetrics/profile/profile?user={username2}&activities=20"
+                response2 = requests.get(url2)
+                
+                if response1.status_code == 200 and response2.status_code == 200:
+                    profile_data1 = response1.json()
+                    profile_data2 = response2.json()
+                    
+                    # Check if profiles exist
+                    if 'error' in profile_data1:
+                        error = f"Profile not found for username: {username1}"
+                        profile_data1 = None
+                    if 'error' in profile_data2:
+                        error = f"Profile not found for username: {username2}"
+                        profile_data2 = None
+                else:
+                    if response1.status_code != 200:
+                        error = f"Error fetching profile for {username1}: HTTP {response1.status_code}"
+                    else:
+                        error = f"Error fetching profile for {username2}: HTTP {response2.status_code}"
+            except Exception as e:
+                error = f"Error: {str(e)}"
+    
+    return render_template('compare.html', title='Compare RuneScape Profiles', 
+                          profile_data1=profile_data1, profile_data2=profile_data2,
+                          username1=username1, username2=username2, error=error)
+
 # Dictionary to map skill IDs to skill names
 SKILL_NAMES = {
     0: "Attack", 1: "Defence", 2: "Strength", 3: "Constitution", 4: "Ranged",

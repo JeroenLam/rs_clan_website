@@ -471,6 +471,111 @@ footer {
     font-weight: bold;
 }
 
+/* Compare Page */
+.compare-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.compare-input {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.compare-input label {
+    font-weight: bold;
+}
+
+.compare-input input {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.compare-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.compare-skills-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.compare-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.skill-higher {
+    border: 2px solid #27ae60;
+    background-color: rgba(39, 174, 96, 0.1);
+}
+
+.compare-details-box {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s;
+    height: auto;
+}
+
+.compare-details-box.visible {
+    opacity: 1;
+}
+
+.compare-details-content h4 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.compare-details-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.compare-details-column {
+    padding: 0.5rem;
+}
+
+.compare-details-column h5 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    border-bottom: 1px solid #f4f4f4;
+    padding-bottom: 0.25rem;
+}
+
+.compare-details-column p {
+    margin: 0.25rem 0;
+    color: #7f8c8d;
+}
+
+.compare-difference {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     nav {
@@ -510,6 +615,12 @@ footer {
     .profile-left-column,
     .profile-right-column {
         width: 100%;
+    }
+    
+    .compare-layout,
+    .compare-skills-container,
+    .compare-details-columns {
+        grid-template-columns: 1fr;
     }
     
     .skills-grid {

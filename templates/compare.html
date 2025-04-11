@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <h1>Compare RuneScape Profiles</h1>
+    <p>Enter two RuneScape usernames to compare their skill levels</p>
+</section>
+
+<section class="profile-container">
+    <div class="profile-search">
+        <form method="POST" action="/compare">
+            <div class="form-group compare-form">
+                <div class="compare-input">
+                    <label for="username1">Player 1:</label>
+                    <input type="text" id="username1" name="username1" placeholder="Enter first username" 
+                           value="{{ username1 if username1 else '' }}" required>
+                </div>
+                <div class="compare-input">
+                    <label for="username2">Player 2:</label>
+                    <input type="text" id="username2" name="username2" placeholder="Enter second username" 
+                           value="{{ username2 if username2 else '' }}" required>
+                </div>
+                <button type="submit" class="btn">Compare</button>
+            </div>
+        </form>
+    </div>
+
+    {% if error %}
+    <div class="error-message">
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+
+    {% if profile_data1 and profile_data2 %}
+    <div class="profile-data">
+        <div class="compare-layout">
+            <!-- Player 1 Column -->
+            <div class="compare-column">
+                <div class="profile-header">
+                    <div class="profile-header-top">
+                        <div class="profile-header-info">
+                            <h2>{{ profile_data1.name }}</h2>
+                            <p>Combat Level: {{ profile_data1.combatlevel }}</p>
+                            <p>Total Skill: {{ profile_data1.totalskill }}</p>
+                            <p>Total XP: {{ "{:,}".format(profile_data1.totalxp) }}</p>
+                            <p>Quests Completed: {{ profile_data1.questscomplete }}</p>
+                            <p>Rank: {{ profile_data1.rank }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Player 2 Column -->
+            <div class="compare-column">
+                <div class="profile-header">
+                    <div class="profile-header-top">
+                        <div class="profile-header-info">
+                            <h2>{{ profile_data2.name }}</h2>
+                            <p>Combat Level: {{ profile_data2.combatlevel }}</p>
+                            <p>Total Skill: {{ profile_data2.totalskill }}</p>
+                            <p>Total XP: {{ "{:,}".format(profile_data2.totalxp) }}</p>
+                            <p>Quests Completed: {{ profile_data2.questscomplete }}</p>
+                            <p>Rank: {{ profile_data2.rank }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="compare-skills-container">
+            <!-- Player 1 Skills -->
+            <div class="compare-column">
+                <div class="profile-section skills-section">
+                    <h3>Skills</h3>
+                    <div class="skills-grid">
+                    {% set skill_order = [0, 3, 14, 2, 16, 13, 1, 15, 10, 4, 17, 7, 5, 12, 11, 6, 9, 8, 20, 18, 19, 22, 21, 23, 24, 25, 26, 27, 28] %}
+                    {% for skill_id in skill_order %}
+                        {% set skill1 = None %}
+                        {% set skill2 = None %}
+                        {% for s in profile_data1.skillvalues %}
+                            {% if s.id == skill_id %}
+                                {% set skill1 = s %}
+                            {% endif %}
+                        {% endfor %}
+                        {% for s in profile_data2.skillvalues %}
+                            {% if s.id == skill_id %}
+                                {% set skill2 = s %}
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if skill1 %}
+                            {% set is_higher = (skill2 and skill1.level > skill2.level) or not skill2 %}
+                            <div class="skill-item {% if is_higher %}skill-higher{% endif %}" 
+                                 onmouseover="showCompareDetails('{{ skill_id|get_skill_name }}', {{ skill1.level }}, {{ skill1.xp }}, {{ skill1.rank }}, {% if skill2 %}{{ skill2.level }}{% else %}0{% endif %}, {% if skill2 %}{{ skill2.xp }}{% else %}0{% endif %}, {% if skill2 %}{{ skill2.rank }}{% else %}0{% endif %})">
+                                <div class="skill-icon">
+                                    <img src="{{ url_for('static', filename='img/21px-' + (skill_id|get_skill_name) + '-icon.webp') }}" alt="{{ skill_id|get_skill_name }}">
+                                </div>
+                                <div class="skill-level">{{ skill1.level }}</div>
+                            </div>
+                        {% else %}
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <img src="{{ url_for('static', filename='img/21px-' + (skill_id|get_skill_name) + '-icon.webp') }}" alt="{{ skill_id|get_skill_name }}">
+                                </div>
+                                <div class="skill-level">-</div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Player 2 Skills -->
+            <div class="compare-column">
+                <div class="profile-section skills-section">
+                    <h3>Skills</h3>
+                    <div class="skills-grid">
+                    {% for skill_id in skill_order %}
+                        {% set skill1 = None %}
+                        {% set skill2 = None %}
+                        {% for s in profile_data1.skillvalues %}
+                            {% if s.id == skill_id %}
+                                {% set skill1 = s %}
+                            {% endif %}
+                        {% endfor %}
+                        {% for s in profile_data2.skillvalues %}
+                            {% if s.id == skill_id %}
+                                {% set skill2 = s %}
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if skill2 %}
+                            {% set is_higher = (skill1 and skill2.level > skill1.level) or not skill1 %}
+                            <div class="skill-item {% if is_higher %}skill-higher{% endif %}" 
+                                 onmouseover="showCompareDetails('{{ skill_id|get_skill_name }}', {% if skill1 %}{{ skill1.level }}{% else %}0{% endif %}, {% if skill1 %}{{ skill1.xp }}{% else %}0{% endif %}, {% if skill1 %}{{ skill1.rank }}{% else %}0{% endif %}, {{ skill2.level }}, {{ skill2.xp }}, {{ skill2.rank }})">
+                                <div class="skill-icon">
+                                    <img src="{{ url_for('static', filename='img/21px-' + (skill_id|get_skill_name) + '-icon.webp') }}" alt="{{ skill_id|get_skill_name }}">
+                                </div>
+                                <div class="skill-level">{{ skill2.level }}</div>
+                            </div>
+                        {% else %}
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <img src="{{ url_for('static', filename='img/21px-' + (skill_id|get_skill_name) + '-icon.webp') }}" alt="{{ skill_id|get_skill_name }}">
+                                </div>
+                                <div class="skill-level">-</div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="compare-details-box" id="compareDetailsBox">
+            <div class="compare-details-content">
+                <h4 id="compareSkillName">Hover over a skill</h4>
+                <div class="compare-details-columns">
+                    <div class="compare-details-column">
+                        <h5>{{ profile_data1.name }}</h5>
+                        <p id="compareLevel1">Level: -</p>
+                        <p id="compareXP1">XP: -</p>
+                        <p id="compareRank1">Rank: -</p>
+                    </div>
+                    <div class="compare-details-column">
+                        <h5>{{ profile_data2.name }}</h5>
+                        <p id="compareLevel2">Level: -</p>
+                        <p id="compareXP2">XP: -</p>
+                        <p id="compareRank2">Rank: -</p>
+                    </div>
+                </div>
+                <p id="compareDifference" class="compare-difference"></p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}
