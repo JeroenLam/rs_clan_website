@@ -74,17 +74,13 @@
                     {% for skill_id in [2, 16, 13] %}
                         {% for skill in profile_data.skillvalues %}
                             {% if skill.id == skill_id %}
-                            <div class="skill-item">
+                            <div class="skill-item" 
+                                 onmouseover="showSkillDetails('{{ skill.id|get_skill_name }}', {{ skill.level }}, {{ skill.xp }}, {{ skill.rank }})"
+                                 onmouseout="hideSkillDetails()">
                                 <div class="skill-icon">
                                     <img src="{{ url_for('static', filename='img/21px-' + (skill.id|get_skill_name) + '-icon.webp') }}" alt="{{ skill.id|get_skill_name }}">
                                 </div>
-                                <div class="skill-info">
-                                    <div class="skill-level">{{ skill.level }}</div>
-                                </div>
-                                <div class="skill-details">
-                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
-                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
-                                </div>
+                                <div class="skill-level">{{ skill.level }}</div>
                             </div>
                             {% endif %}
                         {% endfor %}
@@ -94,17 +90,13 @@
                     {% for skill_id in [1, 15, 10] %}
                         {% for skill in profile_data.skillvalues %}
                             {% if skill.id == skill_id %}
-                            <div class="skill-item">
+                            <div class="skill-item" 
+                                 onmouseover="showSkillDetails('{{ skill.id|get_skill_name }}', {{ skill.level }}, {{ skill.xp }}, {{ skill.rank }})"
+                                 onmouseout="hideSkillDetails()">
                                 <div class="skill-icon">
                                     <img src="{{ url_for('static', filename='img/21px-' + (skill.id|get_skill_name) + '-icon.webp') }}" alt="{{ skill.id|get_skill_name }}">
                                 </div>
-                                <div class="skill-info">
-                                    <div class="skill-level">{{ skill.level }}</div>
-                                </div>
-                                <div class="skill-details">
-                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
-                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
-                                </div>
+                                <div class="skill-level">{{ skill.level }}</div>
                             </div>
                             {% endif %}
                         {% endfor %}
@@ -114,17 +106,13 @@
                     {% for skill_id in [4, 17, 7] %}
                         {% for skill in profile_data.skillvalues %}
                             {% if skill.id == skill_id %}
-                            <div class="skill-item">
+                            <div class="skill-item" 
+                                 onmouseover="showSkillDetails('{{ skill.id|get_skill_name }}', {{ skill.level }}, {{ skill.xp }}, {{ skill.rank }})"
+                                 onmouseout="hideSkillDetails()">
                                 <div class="skill-icon">
                                     <img src="{{ url_for('static', filename='img/21px-' + (skill.id|get_skill_name) + '-icon.webp') }}" alt="{{ skill.id|get_skill_name }}">
                                 </div>
-                                <div class="skill-info">
-                                    <div class="skill-level">{{ skill.level }}</div>
-                                </div>
-                                <div class="skill-details">
-                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
-                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
-                                </div>
+                                <div class="skill-level">{{ skill.level }}</div>
                             </div>
                             {% endif %}
                         {% endfor %}
@@ -134,17 +122,13 @@
                     {% for skill_id in [5, 12, 11] %}
                         {% for skill in profile_data.skillvalues %}
                             {% if skill.id == skill_id %}
-                            <div class="skill-item">
+                            <div class="skill-item" 
+                                 onmouseover="showSkillDetails('{{ skill.id|get_skill_name }}', {{ skill.level }}, {{ skill.xp }}, {{ skill.rank }})"
+                                 onmouseout="hideSkillDetails()">
                                 <div class="skill-icon">
                                     <img src="{{ url_for('static', filename='img/21px-' + (skill.id|get_skill_name) + '-icon.webp') }}" alt="{{ skill.id|get_skill_name }}">
                                 </div>
-                                <div class="skill-info">
-                                    <div class="skill-level">{{ skill.level }}</div>
-                                </div>
-                                <div class="skill-details">
-                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
-                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
-                                </div>
+                                <div class="skill-level">{{ skill.level }}</div>
                             </div>
                             {% endif %}
                         {% endfor %}
@@ -154,17 +138,13 @@
                     {% for skill_id in [6, 9, 8] %}
                         {% for skill in profile_data.skillvalues %}
                             {% if skill.id == skill_id %}
-                            <div class="skill-item">
+                            <div class="skill-item" 
+                                 onmouseover="showSkillDetails('{{ skill.id|get_skill_name }}', {{ skill.level }}, {{ skill.xp }}, {{ skill.rank }})"
+                                 onmouseout="hideSkillDetails()">
                                 <div class="skill-icon">
                                     <img src="{{ url_for('static', filename='img/21px-' + (skill.id|get_skill_name) + '-icon.webp') }}" alt="{{ skill.id|get_skill_name }}">
                                 </div>
-                                <div class="skill-info">
-                                    <div class="skill-level">{{ skill.level }}</div>
-                                </div>
-                                <div class="skill-details">
-                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
-                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
-                                </div>
+                                <div class="skill-level">{{ skill.level }}</div>
                             </div>
                             {% endif %}
                         {% endfor %}
@@ -174,17 +154,13 @@
                     {% for skill_id in [20, 18, 19] %}
                         {% for skill in profile_data.skillvalues %}
                             {% if skill.id == skill_id %}
-                            <div class="skill-item">
+                            <div class="skill-item" 
+                                 onmouseover="showSkillDetails('{{ skill.id|get_skill_name }}', {{ skill.level }}, {{ skill.xp }}, {{ skill.rank }})"
+                                 onmouseout="hideSkillDetails()">
                                 <div class="skill-icon">
                                     <img src="{{ url_for('static', filename='img/21px-' + (skill.id|get_skill_name) + '-icon.webp') }}" alt="{{ skill.id|get_skill_name }}">
                                 </div>
-                                <div class="skill-info">
-                                    <div class="skill-level">{{ skill.level }}</div>
-                                </div>
-                                <div class="skill-details">
-                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
-                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
-                                </div>
+                                <div class="skill-level">{{ skill.level }}</div>
                             </div>
                             {% endif %}
                         {% endfor %}
@@ -194,17 +170,13 @@
                     {% for skill_id in [22, 21, 23] %}
                         {% for skill in profile_data.skillvalues %}
                             {% if skill.id == skill_id %}
-                            <div class="skill-item">
+                            <div class="skill-item" 
+                                 onmouseover="showSkillDetails('{{ skill.id|get_skill_name }}', {{ skill.level }}, {{ skill.xp }}, {{ skill.rank }})"
+                                 onmouseout="hideSkillDetails()">
                                 <div class="skill-icon">
                                     <img src="{{ url_for('static', filename='img/21px-' + (skill.id|get_skill_name) + '-icon.webp') }}" alt="{{ skill.id|get_skill_name }}">
                                 </div>
-                                <div class="skill-info">
-                                    <div class="skill-level">{{ skill.level }}</div>
-                                </div>
-                                <div class="skill-details">
-                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
-                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
-                                </div>
+                                <div class="skill-level">{{ skill.level }}</div>
                             </div>
                             {% endif %}
                         {% endfor %}
@@ -214,17 +186,13 @@
                     {% for skill_id in [24, 25, 26] %}
                         {% for skill in profile_data.skillvalues %}
                             {% if skill.id == skill_id %}
-                            <div class="skill-item">
+                            <div class="skill-item" 
+                                 onmouseover="showSkillDetails('{{ skill.id|get_skill_name }}', {{ skill.level }}, {{ skill.xp }}, {{ skill.rank }})"
+                                 onmouseout="hideSkillDetails()">
                                 <div class="skill-icon">
                                     <img src="{{ url_for('static', filename='img/21px-' + (skill.id|get_skill_name) + '-icon.webp') }}" alt="{{ skill.id|get_skill_name }}">
                                 </div>
-                                <div class="skill-info">
-                                    <div class="skill-level">{{ skill.level }}</div>
-                                </div>
-                                <div class="skill-details">
-                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
-                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
-                                </div>
+                                <div class="skill-level">{{ skill.level }}</div>
                             </div>
                             {% endif %}
                         {% endfor %}
@@ -234,17 +202,13 @@
                     {% for skill_id in [27, 28] %}
                         {% for skill in profile_data.skillvalues %}
                             {% if skill.id == skill_id %}
-                            <div class="skill-item">
+                            <div class="skill-item" 
+                                 onmouseover="showSkillDetails('{{ skill.id|get_skill_name }}', {{ skill.level }}, {{ skill.xp }}, {{ skill.rank }})"
+                                 onmouseout="hideSkillDetails()">
                                 <div class="skill-icon">
                                     <img src="{{ url_for('static', filename='img/21px-' + (skill.id|get_skill_name) + '-icon.webp') }}" alt="{{ skill.id|get_skill_name }}">
                                 </div>
-                                <div class="skill-info">
-                                    <div class="skill-level">{{ skill.level }}</div>
-                                </div>
-                                <div class="skill-details">
-                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
-                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
-                                </div>
+                                <div class="skill-level">{{ skill.level }}</div>
                             </div>
                             {% endif %}
                         {% endfor %}
