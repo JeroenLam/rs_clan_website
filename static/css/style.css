@@ -323,6 +323,27 @@ footer {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.profile-header-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.total-level-icon {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+}
+
+.total-level-icon img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.profile-header-info {
+    flex: 1;
+}
+
 .profile-header h2 {
     color: #2c3e50;
     margin-bottom: 1rem;
@@ -368,12 +389,16 @@ footer {
 .skill-icon {
     width: 32px;
     height: 32px;
-    background-color: #3498db;
-    border-radius: 4px;
     margin-right: 0.75rem;
-    background-size: cover;
-    background-position: center;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skill-icon img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .skill-info {
@@ -404,36 +429,6 @@ footer {
     display: block;
 }
 
-/* Skill icons - these would ideally be replaced with actual game icons */
-.skill-0 { background-color: #c0392b; } /* Attack */
-.skill-1 { background-color: #2980b9; } /* Defence */
-.skill-2 { background-color: #27ae60; } /* Strength */
-.skill-3 { background-color: #8e44ad; } /* Constitution */
-.skill-4 { background-color: #16a085; } /* Ranged */
-.skill-5 { background-color: #f39c12; } /* Prayer */
-.skill-6 { background-color: #2c3e50; } /* Magic */
-.skill-7 { background-color: #d35400; } /* Cooking */
-.skill-8 { background-color: #795548; } /* Woodcutting */
-.skill-9 { background-color: #607d8b; } /* Fletching */
-.skill-10 { background-color: #3498db; } /* Fishing */
-.skill-11 { background-color: #e74c3c; } /* Firemaking */
-.skill-12 { background-color: #9b59b6; } /* Crafting */
-.skill-13 { background-color: #34495e; } /* Smithing */
-.skill-14 { background-color: #7f8c8d; } /* Mining */
-.skill-15 { background-color: #1abc9c; } /* Herblore */
-.skill-16 { background-color: #2ecc71; } /* Agility */
-.skill-17 { background-color: #e67e22; } /* Thieving */
-.skill-18 { background-color: #c0392b; } /* Slayer */
-.skill-19 { background-color: #27ae60; } /* Farming */
-.skill-20 { background-color: #8e44ad; } /* Runecrafting */
-.skill-21 { background-color: #d35400; } /* Hunter */
-.skill-22 { background-color: #795548; } /* Construction */
-.skill-23 { background-color: #3498db; } /* Summoning */
-.skill-24 { background-color: #2c3e50; } /* Dungeoneering */
-.skill-25 { background-color: #9b59b6; } /* Divination */
-.skill-26 { background-color: #f39c12; } /* Invention */
-.skill-27 { background-color: #16a085; } /* Archaeology */
-.skill-28 { background-color: #34495e; } /* Necromancy */
 
 .activities-list {
     list-style: none;

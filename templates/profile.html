@@ -27,12 +27,19 @@
     {% if profile_data %}
     <div class="profile-data">
         <div class="profile-header">
-            <h2>{{ profile_data.name }}</h2>
-            <p>Combat Level: {{ profile_data.combatlevel }}</p>
-            <p>Total Skill: {{ profile_data.totalskill }}</p>
-            <p>Total XP: {{ "{:,}".format(profile_data.totalxp) }}</p>
-            <p>Quests Completed: {{ profile_data.questscomplete }}</p>
-            <p>Rank: {{ profile_data.rank }}</p>
+            <div class="profile-header-top">
+                <div class="total-level-icon">
+                    <img src="{{ url_for('static', filename='img/total_level_icon.png') }}" alt="Total Level">
+                </div>
+                <div class="profile-header-info">
+                    <h2>{{ profile_data.name }}</h2>
+                    <p>Combat Level: {{ profile_data.combatlevel }}</p>
+                    <p>Total Skill: {{ profile_data.totalskill }}</p>
+                    <p>Total XP: {{ "{:,}".format(profile_data.totalxp) }}</p>
+                    <p>Quests Completed: {{ profile_data.questscomplete }}</p>
+                    <p>Rank: {{ profile_data.rank }}</p>
+                </div>
+            </div>
         </div>
 
         <div class="profile-section">
@@ -40,7 +47,9 @@
             <div class="skills-grid">
                 {% for skill in profile_data.skillvalues %}
                 <div class="skill-item">
-                    <div class="skill-icon skill-{{ skill.id }}"></div>
+                    <div class="skill-icon">
+                        <img src="{{ url_for('static', filename='img/skill_icon_' + (skill.id|get_skill_name|lower) + '.png') }}" alt="{{ skill.id|get_skill_name }}">
+                    </div>
                     <div class="skill-info">
                         <div class="skill-name">{{ skill.id|get_skill_name }}</div>
                         <div class="skill-level">{{ skill.level }}</div>
