@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <h1>RuneScape Profile Lookup</h1>
+    <p>Enter your RuneScape username to view your profile data</p>
+</section>
+
+<section class="profile-container">
+    <div class="profile-search">
+        <form method="POST" action="/profile">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter RuneScape username" 
+                       value="{{ username if username else '' }}" required>
+                <button type="submit" class="btn">Search</button>
+            </div>
+        </form>
+    </div>
+
+    {% if error %}
+    <div class="error-message">
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+
+    {% if profile_data %}
+    <div class="profile-data">
+        <div class="profile-header">
+            <h2>{{ profile_data.name }}</h2>
+            <p>Combat Level: {{ profile_data.combatlevel }}</p>
+            <p>Total Skill: {{ profile_data.totalskill }}</p>
+            <p>Total XP: {{ "{:,}".format(profile_data.totalxp) }}</p>
+            <p>Quests Completed: {{ profile_data.questscomplete }}</p>
+            <p>Rank: {{ profile_data.rank }}</p>
+        </div>
+
+        <div class="profile-section">
+            <h3>Skills</h3>
+            <div class="skills-grid">
+                {% for skill in profile_data.skillvalues %}
+                <div class="skill-item">
+                    <span class="skill-name">{{ get_skill_name(skill.id) }}</span>
+                    <span class="skill-level">Level {{ skill.level }}</span>
+                    <span class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</span>
+                    <span class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <h3>Recent Activities</h3>
+            <ul class="activities-list">
+                {% for activity in profile_data.activities %}
+                <li class="activity-item">
+                    <span class="activity-date">{{ activity.date }}</span>
+                    <span class="activity-text">{{ activity.text }}</span>
+                    <span class="activity-details">{{ activity.details }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}
