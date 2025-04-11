@@ -45,22 +45,26 @@
 
             <div class="profile-section skills-section">
                 <h3>Skills</h3>
+                <div class="skill-details-box" id="skillDetailsBox">
+                    <div class="skill-details-content">
+                        <h4 id="skillName">Hover over a skill</h4>
+                        <p id="skillLevel">Level: -</p>
+                        <p id="skillXP">XP: -</p>
+                        <p id="skillRank">Rank: -</p>
+                    </div>
+                </div>
                 <div class="skills-grid">
                     <!-- First row -->
                     {% for skill_id in [0, 3, 14] %}
                         {% for skill in profile_data.skillvalues %}
                             {% if skill.id == skill_id %}
-                            <div class="skill-item">
+                            <div class="skill-item" 
+                                 onmouseover="showSkillDetails('{{ skill.id|get_skill_name }}', {{ skill.level }}, {{ skill.xp }}, {{ skill.rank }})"
+                                 onmouseout="hideSkillDetails()">
                                 <div class="skill-icon">
                                     <img src="{{ url_for('static', filename='img/21px-' + (skill.id|get_skill_name) + '-icon.webp') }}" alt="{{ skill.id|get_skill_name }}">
                                 </div>
-                                <div class="skill-info">
-                                    <div class="skill-level">{{ skill.level }}</div>
-                                </div>
-                                <div class="skill-details">
-                                    <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
-                                    <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
-                                </div>
+                                <div class="skill-level">{{ skill.level }}</div>
                             </div>
                             {% endif %}
                         {% endfor %}

@@ -25,5 +25,19 @@
     <footer>
         <p>&copy; 2023 Bladblazers!</p>
     </footer>
+    
+    <script>
+        function showSkillDetails(name, level, xp, rank) {
+            document.getElementById('skillName').textContent = name;
+            document.getElementById('skillLevel').textContent = 'Level: ' + level;
+            document.getElementById('skillXP').textContent = 'XP: ' + xp.toLocaleString();
+            document.getElementById('skillRank').textContent = 'Rank: ' + rank.toLocaleString();
+            document.getElementById('skillDetailsBox').classList.add('visible');
+        }
+        
+        function hideSkillDetails() {
+            document.getElementById('skillDetailsBox').classList.remove('visible');
+        }
+    </script>
 </body>
 </html>
