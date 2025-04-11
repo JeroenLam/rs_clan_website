@@ -40,10 +40,15 @@
             <div class="skills-grid">
                 {% for skill in profile_data.skillvalues %}
                 <div class="skill-item">
-                    <span class="skill-name">{{ skill.id|get_skill_name }}</span>
-                    <span class="skill-level">Level {{ skill.level }}</span>
-                    <span class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</span>
-                    <span class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</span>
+                    <div class="skill-icon skill-{{ skill.id }}"></div>
+                    <div class="skill-info">
+                        <div class="skill-name">{{ skill.id|get_skill_name }}</div>
+                        <div class="skill-level">{{ skill.level }}</div>
+                    </div>
+                    <div class="skill-details">
+                        <div class="skill-xp">XP: {{ "{:,}".format(skill.xp) }}</div>
+                        <div class="skill-rank">Rank: {{ "{:,}".format(skill.rank) }}</div>
+                    </div>
                 </div>
                 {% endfor %}
             </div>
