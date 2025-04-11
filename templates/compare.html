@@ -91,7 +91,11 @@
                             {% endif %}
                         {% endfor %}
                         
-                        {% set is_higher = (skill2 and skill1 and skill1.level > skill2.level) or (skill1 and not skill2) %}
+                        {% if skill1 %}
+                            {% set is_higher = (skill2 and skill1.level > skill2.level) or (not skill2) %}
+                        {% else %}
+                            {% set is_higher = false %}
+                        {% endif %}
                         <div class="skill-item {% if is_higher %}skill-higher{% endif %}" 
                              onmouseover="showCompareDetails('{{ skill_id|get_skill_name }}', {{ skill1.level if skill1 else 0 }}, {{ skill1.xp if skill1 else 0 }}, {{ skill1.rank if skill1 else 0 }}, {{ skill2.level if skill2 else 0 }}, {{ skill2.xp if skill2 else 0 }}, {{ skill2.rank if skill2 else 0 }})">
                             <div class="skill-icon">
@@ -126,7 +130,11 @@
                             {% endif %}
                         {% endfor %}
                         
-                        {% set is_higher = (skill1 and skill2 and skill2.level > skill1.level) or (skill2 and not skill1) %}
+                        {% if skill2 %}
+                            {% set is_higher = (skill1 and skill2.level > skill1.level) or (not skill1) %}
+                        {% else %}
+                            {% set is_higher = false %}
+                        {% endif %}
                         <div class="skill-item {% if is_higher %}skill-higher{% endif %}" 
                              onmouseover="showCompareDetails('{{ skill_id|get_skill_name }}', {{ skill1.level if skill1 else 0 }}, {{ skill1.xp if skill1 else 0 }}, {{ skill1.rank if skill1 else 0 }}, {{ skill2.level if skill2 else 0 }}, {{ skill2.xp if skill2 else 0 }}, {{ skill2.rank if skill2 else 0 }})">
                             <div class="skill-icon">
