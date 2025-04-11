@@ -44,14 +44,6 @@
                             <p>Rank: {{ profile_data.rank }}</p>
                         </div>
                     </div>
-                    <div class="skill-details-box" id="skillDetailsBox">
-                        <div class="skill-details-content">
-                            <h4 id="skillName">Hover over a skill</h4>
-                            <p id="skillLevel">Level: -</p>
-                            <p id="skillXP">XP: -</p>
-                            <p id="skillRank">Rank: -</p>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="profile-section skills-section">
@@ -216,6 +208,14 @@
                             {% endif %}
                         {% endfor %}
                     {% endfor %}
+                    </div>
+                    <div class="skill-details-box" id="skillDetailsBox">
+                        <div class="skill-details-content">
+                            <h4 id="skillName">Hover over a skill</h4>
+                            <p id="skillLevel">Level: -</p>
+                            <p id="skillXP">XP: -</p>
+                            <p id="skillRank">Rank: -</p>
+                        </div>
                     </div>
                 </div>
             </div>
