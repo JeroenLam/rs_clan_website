@@ -48,19 +48,17 @@
                 {% set skill_order = [0, 3, 14, 2, 16, 13, 1, 15, 10, 4, 17, 7, 5, 12, 11, 6, 9, 8, 20, 18, 19, 22, 21, 23, 24, 25, 26, 27, 28] %}
                 {% for skill_id in skill_order %}
                     {% set skill1 = None %}
-                    {% for s in profile_data1.skillvalues %}
+                    {% for s in profile_data1.skillvalues if not skill1 %}
                         {% if s.id == skill_id %}
                             {% set skill1 = s %}
-                            {% break %}
                         {% endif %}
                     {% endfor %}
                     
                     {% set skill2 = None %}
                     {% if profile_data2 %}
-                        {% for s in profile_data2.skillvalues %}
+                        {% for s in profile_data2.skillvalues if not skill2 %}
                             {% if s.id == skill_id %}
                                 {% set skill2 = s %}
-                                {% break %}
                             {% endif %}
                         {% endfor %}
                     {% endif %}
@@ -119,19 +117,17 @@
                 <div class="skills-grid">
                 {% for skill_id in skill_order %}
                     {% set skill2 = None %}
-                    {% for s in profile_data2.skillvalues %}
+                    {% for s in profile_data2.skillvalues if not skill2 %}
                         {% if s.id == skill_id %}
                             {% set skill2 = s %}
-                            {% break %}
                         {% endif %}
                     {% endfor %}
                     
                     {% set skill1 = None %}
                     {% if profile_data1 %}
-                        {% for s in profile_data1.skillvalues %}
+                        {% for s in profile_data1.skillvalues if not skill1 %}
                             {% if s.id == skill_id %}
                                 {% set skill1 = s %}
-                                {% break %}
                             {% endif %}
                         {% endfor %}
                     {% endif %}
