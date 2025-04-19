@@ -12,6 +12,91 @@ def home():
 def tools():
     return render_template('tools.html', title='Game Tools')
 
+@app.route('/highscores', methods=['GET', 'POST'])
+def highscores():
+    highscores_data = None
+    username = None
+    error = None
+    
+    if request.method == 'POST':
+        username = request.form.get('username')
+        if username:
+            try:
+                # URL encode the username
+                encoded_username = requests.utils.quote(username)
+                url = f"https://secure.runescape.com/m=hiscore/index_lite.ws?player={encoded_username}"
+                response = requests.get(url)
+                
+                if response.status_code == 200:
+                    # Parse the high scores data
+                    highscores_data = parse_highscores(response.text)
+                else:
+                    error = f"Error fetching high scores: HTTP {response.status_code}"
+            except Exception as e:
+                error = f"Error: {str(e)}"
+    
+    return render_template('highscores.html', title='RuneScape High Scores', 
+                          highscores_data=highscores_data, username=username, error=error)
+
+def parse_highscores(data):
+    # Define the order of skills and activities in the high scores data
+    skills = [
+        "Total", "Attack", "Defence", "Strength", "Constitution", "Ranged",
+        "Prayer", "Magic", "Cooking", "Woodcutting", "Fletching", "Fishing",
+        "Firemaking", "Crafting", "Smithing", "Mining", "Herblore", "Agility",
+        "Thieving", "Slayer", "Farming", "Runecrafting", "Hunter", "Construction",
+        "Summoning", "Dungeoneering", "Divination", "Invention", "Archaeology", "Necromancy"
+    ]
+    
+    activities = [
+        "Dual Arena Tournaments", "Bounty Hunter", "Bounty Hunter Rogues",
+        "Fist of Guthix", "Mobilising Armies", "BA Attackers", "BA Defenders",
+        "BA Collectors", "BA Healers", "Castle Wars", "Conquest", "Dominion Tower",
+        "The Crucible", "GG: Athletics", "GG: Resource Race", "WE2: Armadyl Lifetime Contribution",
+        "WE2: Bandos Lifetime Contribution", "WE2: Armadyl PvP Kills", "WE2: Bandos PvP Kills",
+        "Heist Guard Level", "Heist Robber Level", "CFP: 5 Game Average", "RuneScore",
+        "Clue Scrolls (Easy)", "Clue Scrolls (Medium)", "Clue Scrolls (Hard)",
+        "Clue Scrolls (Elite)", "Clue Scrolls (Master)"
+    ]
+    
+    # Split the data into lines
+    lines = data.strip().split('\n')
+    
+    result = {
+        'skills': {},
+        'activities': {}
+    }
+    
+    # Parse skills data (first 30 lines)
+    for i in range(min(len(skills), len(lines))):
+        parts = lines[i].split(',')
+        if len(parts) >= 3:
+            rank = int(parts[0]) if parts[0] != '-1' else -1
+            level = int(parts[1]) if parts[1] != '-1' else -1
+            xp = int(parts[2]) if parts[2] != '-1' else -1
+            
+            result['skills'][skills[i]] = {
+                'rank': rank,
+                'level': level,
+                'xp': xp
+            }
+    
+    # Parse activities data (remaining lines)
+    for i in range(len(skills), min(len(skills) + len(activities), len(lines))):
+        activity_index = i - len(skills)
+        if activity_index < len(activities):
+            parts = lines[i].split(',')
+            if len(parts) >= 2:
+                rank = int(parts[0]) if parts[0] != '-1' else -1
+                score = int(parts[1]) if parts[1] != '-1' else -1
+                
+                result['activities'][activities[activity_index]] = {
+                    'rank': rank,
+                    'score': score
+                }
+    
+    return result
+
 
 @app.route('/compare', methods=['GET', 'POST'])
 def compare():

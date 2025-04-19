@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <h1>RuneScape High Scores</h1>
+    <p>Enter a RuneScape username to view their high scores data</p>
+</section>
+
+<section class="profile-container">
+    <div class="profile-search">
+        <form method="POST" action="/highscores">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter RuneScape username" 
+                       value="{{ username if username else '' }}" required>
+                <button type="submit" class="btn">Search</button>
+            </div>
+        </form>
+    </div>
+
+    {% if error %}
+    <div class="error-message">
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+
+    {% if highscores_data %}
+    <div class="highscores-data">
+        <div class="highscores-header">
+            <h2>{{ username }}'s High Scores</h2>
+            <div class="total-stats">
+                <p><strong>Total Level:</strong> {{ highscores_data.skills.Total.level }}</p>
+                <p><strong>Total XP:</strong> {{ "{:,}".format(highscores_data.skills.Total.xp) }}</p>
+                <p><strong>Rank:</strong> {{ "{:,}".format(highscores_data.skills.Total.rank) }}</p>
+            </div>
+        </div>
+
+        <div class="highscores-content">
+            <div class="highscores-section">
+                <h3>Skills</h3>
+                <div class="skills-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Skill</th>
+                                <th>Level</th>
+                                <th>XP</th>
+                                <th>Rank</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for skill_name, skill_data in highscores_data.skills.items() %}
+                            {% if skill_name != 'Total' %}
+                            <tr>
+                                <td class="skill-name">
+                                    <img src="{{ url_for('static', filename='img/21px-' + skill_name + '-icon.webp') }}" alt="{{ skill_name }}">
+                                    {{ skill_name }}
+                                </td>
+                                <td>{{ skill_data.level }}</td>
+                                <td>{{ "{:,}".format(skill_data.xp) }}</td>
+                                <td>{{ "{:,}".format(skill_data.rank) if skill_data.rank > 0 else '-' }}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="highscores-section">
+                <h3>Activities</h3>
+                <div class="activities-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Activity</th>
+                                <th>Score</th>
+                                <th>Rank</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for activity_name, activity_data in highscores_data.activities.items() %}
+                            {% if activity_data.rank > 0 %}
+                            <tr>
+                                <td>{{ activity_name }}</td>
+                                <td>{{ "{:,}".format(activity_data.score) }}</td>
+                                <td>{{ "{:,}".format(activity_data.rank) }}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="highscores-visualization">
+            <h3>Skills Visualization</h3>
+            <div class="chart-container">
+                <canvas id="skillsChart"></canvas>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</section>
+
+{% if highscores_data %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('skillsChart').getContext('2d');
+        
+        // Extract skill data
+        const skillNames = [];
+        const skillLevels = [];
+        const skillColors = [];
+        
+        {% for skill_name, skill_data in highscores_data.skills.items() %}
+        {% if skill_name != 'Total' %}
+        skillNames.push('{{ skill_name }}');
+        skillLevels.push({{ skill_data.level }});
+        // Generate a random color for each skill
+        skillColors.push(`hsl(${Math.floor(Math.random() * 360)}, 70%, 50%)`);
+        {% endif %}
+        {% endfor %}
+        
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: skillNames,
+                datasets: [{
+                    label: 'Skill Levels',
+                    data: skillLevels,
+                    backgroundColor: skillColors,
+                    borderColor: skillColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 99
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `Level: ${context.raw}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endif %}
+{% endblock %}
