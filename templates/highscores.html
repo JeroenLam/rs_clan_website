@@ -61,8 +61,8 @@
                                 <td>{{ "{:,}".format(skill_data.xp) }}</td>
                                 <td class="progress-cell">
                                     <div class="progress-bar-container">
-                                        <div class="progress-bar" style="width: {{ skill_data.level|get_xp_progress(skill_data.xp) }}%"></div>
-                                        <span class="progress-text">{{ "%.1f"|format(skill_data.level|get_xp_progress(skill_data.xp)) }}%</span>
+                                        <div class="progress-bar" style="width: {{ skill_data.level|get_xp_progress(skill_data.xp, skill_name) }}%"></div>
+                                        <span class="progress-text">{{ "%.1f"|format(skill_data.level|get_xp_progress(skill_data.xp, skill_name)) }}%</span>
                                     </div>
                                 </td>
                                 <td>{{ "{:,}".format(skill_data.rank) if skill_data.rank is not none and skill_data.rank > 0 else '-' }}</td>
