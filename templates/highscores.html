@@ -58,7 +58,7 @@
                                 </td>
                                 <td>{{ skill_data.level }}</td>
                                 <td>{{ "{:,}".format(skill_data.xp) }}</td>
-                                <td>{{ "{:,}".format(skill_data.rank) if skill_data.rank > 0 else '-' }}</td>
+                                <td>{{ "{:,}".format(skill_data.rank) if skill_data.rank and skill_data.rank > 0 else '-' }}</td>
                             </tr>
                             {% endif %}
                             {% endfor %}
@@ -80,7 +80,7 @@
                         </thead>
                         <tbody>
                             {% for activity_name, activity_data in highscores_data.activities.items() %}
-                            {% if activity_data.rank > 0 %}
+                            {% if activity_data.rank and activity_data.rank > 0 %}
                             <tr>
                                 <td>{{ activity_name }}</td>
                                 <td>{{ "{:,}".format(activity_data.score) }}</td>
