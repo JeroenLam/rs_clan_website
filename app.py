@@ -340,25 +340,28 @@ def get_skill_name(skill_id):
 @app.template_filter('get_xp_progress')
 def get_xp_progress(level, xp, skill_name=None):
     """Calculate the XP progress percentage for the current level"""
-    if level >= 120 or xp >= 200000000:  # Max level or max XP
+    if xp >= 200000000:  # Max XP
         return 100
     
     # Use Invention XP table for Invention skill
     if skill_name == "Invention":
         xp_table = INVENTION_XP_TABLE
-        max_level = min(150, len(INVENTION_XP_TABLE) - 1)
     else:
         xp_table = XP_TABLE
-        max_level = min(126, len(XP_TABLE) - 1)
     
-    if level >= max_level:
+    # Find the current level based on XP
+    current_level = 1
+    for i in range(1, len(xp_table)):
+        if xp >= xp_table[i-1] and xp < xp_table[i]:
+            current_level = i
+            break
+    
+    # If XP is at max level
+    if current_level >= len(xp_table) - 1:
         return 100
     
-    current_level_xp = xp_table[level - 1]
-    next_level_xp = xp_table[level]
-    
-    if xp >= next_level_xp:
-        return 100
+    current_level_xp = xp_table[current_level - 1]
+    next_level_xp = xp_table[current_level]
     
     xp_for_level = next_level_xp - current_level_xp
     xp_gained = xp - current_level_xp
