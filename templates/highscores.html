@@ -156,6 +156,19 @@
 </section>
 
 {% if highscores_data %}
+<style>
+    .activity-name img {
+        width: 21px;
+        height: 21px;
+        vertical-align: middle;
+        margin-right: 8px;
+    }
+    
+    .activity-name {
+        display: flex;
+        align-items: center;
+    }
+</style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
