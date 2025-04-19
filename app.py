@@ -49,11 +49,10 @@ def parse_highscores(data):
     ]
     
     activities = [
-        "Bounty Hunter", "Bounty Hunter Rogues",
-        "Fist of Guthix", "Mobilising Armies", "BA Attackers", "BA Defenders",
-        "BA Collectors", "BA Healers", "Castle Wars", "Conquest", "Dominion Tower",
-        "The Crucible", "GG: Athletics", "GG: Resource Race", "WE2: Armadyl Lifetime Contribution",
-        "WE2: Bandos Lifetime Contribution", "WE2: Armadyl PvP Kills", "WE2: Bandos PvP Kills",
+        "Bounty Hunter", "Bounty Hunter Rogues", "Dominion Tower",
+        "The Crucible", "Castle Wars", "BA Attackers", "BA Defenders",
+        "BA Collectors", "BA Healers", "Dual Arena Tournaments", "Mobilising Armies", 
+        "Conquest", "Fist of Guthix", "GG: Resource Race", "GG: Athletics",
         "Heist Guard Level", "Heist Robber Level", "CFP: 5 Game Average", "RuneScore",
         "Clue Scrolls (Easy)", "Clue Scrolls (Medium)", "Clue Scrolls (Hard)",
         "Clue Scrolls (Elite)", "Clue Scrolls (Master)"
