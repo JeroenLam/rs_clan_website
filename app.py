@@ -302,9 +302,38 @@ SKILL_NAMES = {
     28: "Necromancy"
 }
 
+# XP required for each level
+XP_TABLE = [
+    0, 83, 174, 276, 388, 512, 650, 801, 969, 1154, 1358, 1584, 1833, 2107, 2411, 2746, 3115, 3523, 3973, 4470,
+    5018, 5624, 6291, 7028, 7842, 8740, 9730, 10824, 12031, 13363, 14833, 16456, 18247, 20224, 22406, 24815, 27473,
+    30408, 33648, 37224, 41171, 45529, 50339, 55649, 61512, 67983, 75127, 83014, 91721, 101333, 111945, 123660,
+    136594, 150872, 166636, 184040, 203254, 224466, 247886, 273742, 302288, 333804, 368599, 407015, 449428, 496254,
+    547953, 605032, 668051, 737627, 814445, 899257, 992895, 1096278, 1210421, 1336443, 1475581, 1629200, 1798808,
+    1986068, 2192818, 2421087, 2673114, 2951373, 3258594, 3597792, 3972294, 4385776, 4842295, 5346332, 5902831,
+    6517253, 7195629, 7944614, 8771558, 9684577, 10692629, 11805606, 13034431
+]
+
 @app.template_filter('get_skill_name')
 def get_skill_name(skill_id):
     return SKILL_NAMES.get(skill_id, f"Skill {skill_id}")
+
+@app.template_filter('get_xp_progress')
+def get_xp_progress(level, xp):
+    """Calculate the XP progress percentage for the current level"""
+    if level >= 99:  # Max level
+        return 100
+    
+    current_level_xp = XP_TABLE[level - 1]
+    next_level_xp = XP_TABLE[level]
+    
+    if xp >= next_level_xp:
+        return 100
+    
+    xp_for_level = next_level_xp - current_level_xp
+    xp_gained = xp - current_level_xp
+    
+    progress = (xp_gained / xp_for_level) * 100
+    return min(max(0, progress), 100)  # Ensure between 0-100
 
 if __name__ == '__main__':
     # To run with Docker:
