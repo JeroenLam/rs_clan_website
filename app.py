@@ -50,12 +50,13 @@ def parse_highscores(data):
     
     activities = [
         "Bounty Hunter", "Bounty Hunter Rogues", "Dominion Tower",
-        "The Crucible", "Castle Wars", "BA Attackers", "BA Defenders",
-        "BA Collectors", "BA Healers", "Dual Arena Tournaments", "Mobilising Armies", 
+        "The Crucible", "Castle Wars", "Barbarian Assault attackers", "Barbarian Assault defenders",
+        "Barbarian Assault collectors", "Barbarian Assault healers", "Dual Arena Tournaments", "Mobilising Armies", 
         "Conquest", "Fist of Guthix", "GG: Resource Race", "GG: Athletics",
-        "Heist Guard Level", "Heist Robber Level", "CFP: 5 Game Average", "RuneScore",
-        "Clue Scrolls (Easy)", "Clue Scrolls (Medium)", "Clue Scrolls (Hard)",
-        "Clue Scrolls (Elite)", "Clue Scrolls (Master)"
+        "WE2: Armadyl Lifetime Contribution", "WE2: Bandos Lifetime Contribution", "WE2: Armadyl PvP Kills", 
+        "WE2: Bandos PvP Kills", "Heist Guard Level", "Heist Robber Level", "CFP: 5 Game Average", "RuneScore",
+        "Clue scrolls (easy)", "Clue scrolls (medium)", "Clue scrolls (hard)",
+        "Clue scrolls (elite)", "Clue scrolls (master)"
     ]
     
     # Split the data into lines
