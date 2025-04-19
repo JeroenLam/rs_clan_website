@@ -82,7 +82,58 @@
                             {% for activity_name, activity_data in highscores_data.activities.items() %}
                             {% if activity_data.rank is defined and activity_data.rank > 0 %}
                             <tr>
-                                <td>{{ activity_name }}</td>
+                                <td class="activity-name">
+                                    {% if activity_name == "Bounty Hunter" %}
+                                    <img src="{{ url_for('static', filename='img/Bounty_Hunter_icon.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Bounty Hunter Rogues" %}
+                                    <img src="{{ url_for('static', filename='img/Bounty_Hunter_Rogue_icon.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Dominion Tower" %}
+                                    <img src="{{ url_for('static', filename='img/Dominion_tower_highscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "The Crucible" %}
+                                    <img src="{{ url_for('static', filename='img/Crucible_icon_hiscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Castle Wars" %}
+                                    <img src="{{ url_for('static', filename='img/Castle_Wars_Games_highscores.png') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Barbarian Assault attackers" %}
+                                    <img src="{{ url_for('static', filename='img/Barbarian_Assault_Attackers_hiscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Barbarian Assault defenders" %}
+                                    <img src="{{ url_for('static', filename='img/Barbarian_Assault_Defenders_hiscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Barbarian Assault collectors" %}
+                                    <img src="{{ url_for('static', filename='img/Barbarian_Assault_Collectors_hiscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Barbarian Assault healers" %}
+                                    <img src="{{ url_for('static', filename='img/Barbarian_Assault_Healers_hiscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Dual Arena Tournaments" %}
+                                    <img src="{{ url_for('static', filename='img/Duel_tournament.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Mobilising Armies" %}
+                                    <img src="{{ url_for('static', filename='img/Mobilising_Armies_icon_highscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Conquest" %}
+                                    <img src="{{ url_for('static', filename='img/Conquest_hiscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Fist of Guthix" %}
+                                    <img src="{{ url_for('static', filename='img/Fist_of_Guthix_icon_highscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "GG: Resource Race" %}
+                                    <img src="{{ url_for('static', filename='img/Gielinor_Games_resources_icon_hiscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "GG: Athletics" %}
+                                    <img src="{{ url_for('static', filename='img/Gielinor_Games_icon_hiscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "CFP: 5 Game Average" %}
+                                    <img src="{{ url_for('static', filename='img/Cabbage_Facepunch_Bonanza_icon_hiscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "RuneScore" %}
+                                    <img src="{{ url_for('static', filename='img/RuneScore.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Clue scrolls (easy)" %}
+                                    <img src="{{ url_for('static', filename='img/Clue_scrolls_(easy)_hiscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Clue scrolls (medium)" %}
+                                    <img src="{{ url_for('static', filename='img/Clue_scrolls_(medium)_hiscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Clue scrolls (hard)" %}
+                                    <img src="{{ url_for('static', filename='img/Clue_scrolls_(hard)_hiscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Clue scrolls (elite)" %}
+                                    <img src="{{ url_for('static', filename='img/Clue_scrolls_(elite)_hiscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Clue scrolls (master)" %}
+                                    <img src="{{ url_for('static', filename='img/Clue_scrolls_(master)_hiscores.webp') }}" alt="{{ activity_name }}">
+                                    {% elif activity_name == "Heist Guard Level" or activity_name == "Heist Robber Level" %}
+                                    <img src="{{ url_for('static', filename='img/Thieving_icon_highscores.webp') }}" alt="{{ activity_name }}">
+                                    {% else %}
+                                    <img src="{{ url_for('static', filename='img/21px-Stats_Overall_icon_highscores.webp') }}" alt="{{ activity_name }}">
+                                    {% endif %}
+                                    {{ activity_name }}
+                                </td>
                                 <td>{{ "{:,}".format(activity_data.score) }}</td>
                                 <td>{{ "{:,}".format(activity_data.rank) }}</td>
                             </tr>
