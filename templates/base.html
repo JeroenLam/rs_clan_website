@@ -61,6 +61,11 @@
             --shadow-color: rgba(0, 0, 0, 0.1);
             --box-bg: #ffffff;
             --nav-text: #333333;
+            --activity-text: #333333;
+            --chart-grid: rgba(200, 200, 200, 0.2);
+            --tooltip-bg: rgba(0, 0, 0, 0.8);
+            --tooltip-text: #ffffff;
+            --footer-text: #666666;
         }
         
         [data-theme="dark"] {
@@ -75,6 +80,11 @@
             --shadow-color: rgba(0, 0, 0, 0.3);
             --box-bg: #2d2d2d;
             --nav-text: #f0f0f0;
+            --activity-text: #f0f0f0;
+            --chart-grid: rgba(100, 100, 100, 0.2);
+            --tooltip-bg: rgba(50, 50, 50, 0.9);
+            --tooltip-text: #f0f0f0;
+            --footer-text: #aaaaaa;
         }
         
         body {
@@ -175,7 +185,7 @@
         {% block content %}{% endblock %}
     </main>
     
-    <footer>
+    <footer style="color: var(--footer-text);">
         <p>&copy; 2023 Bladblazers!</p>
     </footer>
     

@@ -345,7 +345,7 @@
                         beginAtZero: true,
                         max: 99,
                         grid: {
-                            color: 'rgba(200, 200, 200, 0.2)'
+                            color: 'var(--chart-grid)'
                         },
                         ticks: {
                             font: {
@@ -371,7 +371,9 @@
                         display: false
                     },
                     tooltip: {
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        backgroundColor: 'var(--tooltip-bg)',
+                        titleColor: 'var(--tooltip-text)',
+                        bodyColor: 'var(--tooltip-text)',
                         titleFont: {
                             size: 14,
                             weight: 'bold'

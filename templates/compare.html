@@ -217,7 +217,7 @@
                 <h3>Recent Activities</h3>
                 <ul class="activities-list">
                     {% for activity in profile_data1.activities %}
-                    <li class="activity-item">
+                    <li class="activity-item" style="color: var(--activity-text);">
                         <span class="activity-date">{{ activity.date }}</span>
                         <span class="activity-text">{{ activity.text }}</span>
                         <span class="activity-details">{{ activity.details }}</span>
@@ -411,7 +411,7 @@
                 <h3>Recent Activities</h3>
                 <ul class="activities-list">
                     {% for activity in profile_data2.activities %}
-                    <li class="activity-item">
+                    <li class="activity-item" style="color: var(--activity-text);">
                         <span class="activity-date">{{ activity.date }}</span>
                         <span class="activity-text">{{ activity.text }}</span>
                         <span class="activity-details">{{ activity.details }}</span>
