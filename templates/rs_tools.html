@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <h1>RuneScape Tools</h1>
+    <p>Explore various tools to enhance your RuneScape experience</p>
+</section>
+
+<section class="rs-tools-container">
+    <div class="tools-grid">
+        <div class="tool-card">
+            <h2>RS Profile</h2>
+            <p>Look up detailed information about a RuneScape player's profile, including skills, levels, and recent activities.</p>
+            <a href="/profile" class="btn">View Profile Tool</a>
+        </div>
+        
+        <div class="tool-card">
+            <h2>Compare Profiles</h2>
+            <p>Compare two RuneScape players side by side to see how their skills, levels, and activities stack up.</p>
+            <a href="/compare" class="btn">Compare Profiles</a>
+        </div>
+        
+        <div class="tool-card">
+            <h2>High Scores</h2>
+            <p>Check a player's rankings in the official RuneScape high scores, including skills and minigames.</p>
+            <a href="/highscores" class="btn">View High Scores</a>
+        </div>
+        
+        <div class="tool-card">
+            <h2>Activity Timeline</h2>
+            <p>View a combined timeline of activities from multiple RuneScape players to see who did what and when.</p>
+            <a href="/timeline" class="btn">View Timeline</a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .rs-tools-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .tool-card {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .tool-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .tool-card h2 {
+        margin-top: 0;
+        color: #333;
+    }
+    
+    .tool-card p {
+        color: #666;
+        margin-bottom: 20px;
+    }
+    
+    .btn {
+        display: inline-block;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+    
+    .btn:hover {
+        background-color: #45a049;
+    }
+</style>
+{% endblock %}

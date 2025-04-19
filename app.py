@@ -12,6 +12,10 @@ def home():
 def tools():
     return render_template('tools.html', title='Game Tools')
 
+@app.route('/rs-tools')
+def rs_tools():
+    return render_template('rs_tools.html', title='RuneScape Tools')
+
 @app.route('/timeline', methods=['GET', 'POST'])
 def timeline():
     timeline_data = []
