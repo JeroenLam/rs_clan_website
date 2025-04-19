@@ -57,9 +57,7 @@
                 {% for skill_id in [0, 3, 14] %}
                     {% for skill in profile_data1.skillvalues %}
                         {% if skill.id == skill_id %}
-                        <div class="skill-item" 
-                             onmouseover="showSkillDetails('{{ skill.id|get_skill_name }}', {{ skill.level }}, {{ skill.xp }}, {{ skill.rank }})"
-                             onmouseout="hideSkillDetails()">
+                        <div class="skill-item">
                             <div class="skill-icon">
                                 <img src="{{ url_for('static', filename='img/21px-' + (skill.id|get_skill_name) + '-icon.webp') }}" alt="{{ skill.id|get_skill_name }}">
                             </div>
@@ -212,14 +210,6 @@
                         {% endif %}
                     {% endfor %}
                 {% endfor %}
-                </div>
-                <div class="skill-details-box" id="skillDetailsBox1" style="background-color: var(--box-bg);">
-                    <div class="skill-details-content">
-                        <h4 id="skillName1">Hover over a skill</h4>
-                        <p id="skillLevel1">Level: -</p>
-                        <p id="skillXP1">XP: -</p>
-                        <p id="skillRank1">Rank: -</p>
-                    </div>
                 </div>
             </div>
 
@@ -261,9 +251,7 @@
                 {% for skill_id in [0, 3, 14] %}
                     {% for skill in profile_data2.skillvalues %}
                         {% if skill.id == skill_id %}
-                        <div class="skill-item" 
-                             onmouseover="showSkillDetails2('{{ skill.id|get_skill_name }}', {{ skill.level }}, {{ skill.xp }}, {{ skill.rank }})"
-                             onmouseout="hideSkillDetails2()">
+                        <div class="skill-item">
                             <div class="skill-icon">
                                 <img src="{{ url_for('static', filename='img/21px-' + (skill.id|get_skill_name) + '-icon.webp') }}" alt="{{ skill.id|get_skill_name }}">
                             </div>
@@ -417,14 +405,6 @@
                     {% endfor %}
                 {% endfor %}
                 </div>
-                <div class="skill-details-box" id="skillDetailsBox2" style="background-color: var(--box-bg);">
-                    <div class="skill-details-content">
-                        <h4 id="skillName2">Hover over a skill</h4>
-                        <p id="skillLevel2">Level: -</p>
-                        <p id="skillXP2">XP: -</p>
-                        <p id="skillRank2">Rank: -</p>
-                    </div>
-                </div>
             </div>
 
             <div class="profile-section">
@@ -444,29 +424,4 @@
     {% endif %}
 </section>
 
-<script>
-    function showSkillDetails(name, level, xp, rank) {
-        document.getElementById('skillName1').textContent = name;
-        document.getElementById('skillLevel1').textContent = 'Level: ' + level;
-        document.getElementById('skillXP1').textContent = 'XP: ' + xp.toLocaleString();
-        document.getElementById('skillRank1').textContent = 'Rank: ' + rank.toLocaleString();
-        document.getElementById('skillDetailsBox1').style.display = 'block';
-    }
-    
-    function hideSkillDetails() {
-        document.getElementById('skillDetailsBox1').style.display = 'none';
-    }
-    
-    function showSkillDetails2(name, level, xp, rank) {
-        document.getElementById('skillName2').textContent = name;
-        document.getElementById('skillLevel2').textContent = 'Level: ' + level;
-        document.getElementById('skillXP2').textContent = 'XP: ' + xp.toLocaleString();
-        document.getElementById('skillRank2').textContent = 'Rank: ' + rank.toLocaleString();
-        document.getElementById('skillDetailsBox2').style.display = 'block';
-    }
-    
-    function hideSkillDetails2() {
-        document.getElementById('skillDetailsBox2').style.display = 'none';
-    }
-</script>
 {% endblock %}
