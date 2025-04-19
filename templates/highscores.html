@@ -166,10 +166,10 @@
 <style>
     /* General styling improvements */
     .highscores-data {
-        background-color: #f9f9f9;
+        background-color: var(--bg-secondary);
         border-radius: 8px;
         padding: 20px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 10px var(--shadow-color);
         margin-top: 20px;
     }
     
@@ -179,7 +179,7 @@
         align-items: center;
         margin-bottom: 20px;
         flex-wrap: wrap;
-        border-bottom: 2px solid #eaeaea;
+        border-bottom: 2px solid var(--border-color);
         padding-bottom: 15px;
     }
     
@@ -207,17 +207,17 @@
     }
     
     .highscores-section {
-        background-color: white;
+        background-color: var(--bg-primary);
         border-radius: 6px;
         padding: 15px;
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 1px 5px var(--shadow-color);
     }
     
     .highscores-section h3 {
         margin-top: 0;
-        border-bottom: 1px solid #eaeaea;
+        border-bottom: 1px solid var(--border-color);
         padding-bottom: 10px;
-        color: #333;
+        color: var(--text-primary);
     }
     
     /* Table styling */
@@ -229,17 +229,17 @@
     th, td {
         padding: 10px;
         text-align: left;
-        border-bottom: 1px solid #eaeaea;
+        border-bottom: 1px solid var(--border-color);
     }
     
     th {
-        background-color: #f2f2f2;
+        background-color: var(--bg-secondary);
         font-weight: bold;
-        color: #555;
+        color: var(--text-primary);
     }
     
     tr:hover {
-        background-color: #f5f5f5;
+        background-color: var(--bg-hover);
     }
     
     /* Progress bar styling */
@@ -248,7 +248,7 @@
     }
     
     .progress-bar-container {
-        background-color: #e0e0e0;
+        background-color: var(--border-color);
         border-radius: 4px;
         height: 20px;
         width: 100%;
@@ -268,10 +268,10 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        color: #333;
+        color: var(--text-primary);
         font-size: 0.8em;
         font-weight: bold;
-        text-shadow: 0 0 2px white;
+        text-shadow: 0 0 2px var(--bg-primary);
     }
     
     /* Activity styling */
@@ -290,10 +290,10 @@
     /* Chart styling */
     .highscores-visualization {
         margin-top: 30px;
-        background-color: white;
+        background-color: var(--bg-primary);
         border-radius: 6px;
         padding: 20px;
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 1px 5px var(--shadow-color);
     }
     
     .chart-container {
