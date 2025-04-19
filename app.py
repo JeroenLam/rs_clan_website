@@ -49,7 +49,7 @@ def parse_highscores(data):
     ]
     
     activities = [
-        "Dual Arena Tournaments", "Bounty Hunter", "Bounty Hunter Rogues",
+        "Bounty Hunter", "Bounty Hunter Rogues",
         "Fist of Guthix", "Mobilising Armies", "BA Attackers", "BA Defenders",
         "BA Collectors", "BA Healers", "Castle Wars", "Conquest", "Dominion Tower",
         "The Crucible", "GG: Athletics", "GG: Resource Race", "WE2: Armadyl Lifetime Contribution",
