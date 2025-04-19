@@ -12,6 +12,73 @@ def home():
 def tools():
     return render_template('tools.html', title='Game Tools')
 
+@app.route('/timeline', methods=['GET', 'POST'])
+def timeline():
+    timeline_data = []
+    usernames = None
+    user_colors = {}
+    error = None
+    
+    if request.method == 'POST':
+        usernames = request.form.get('usernames', '')
+        if usernames:
+            # Split the comma-separated usernames and remove whitespace
+            username_list = [name.strip() for name in usernames.split(',') if name.strip()]
+            
+            # Generate muted colors for each username
+            colors = [
+                "#e6b8af", "#f4cccc", "#fce5cd", "#fff2cc", "#d9ead3", 
+                "#d0e0e3", "#c9daf8", "#cfe2f3", "#d9d2e9", "#ead1dc",
+                "#dd7e6b", "#ea9999", "#f9cb9c", "#ffe599", "#b6d7a8", 
+                "#a2c4c9", "#a4c2f4", "#9fc5e8", "#b4a7d6", "#d5a6bd"
+            ]
+            
+            # Assign colors to usernames
+            for i, username in enumerate(username_list):
+                user_colors[username] = colors[i % len(colors)]
+            
+            # Fetch activities for each username
+            all_activities = []
+            for username in username_list:
+                try:
+                    url = f"https://apps.runescape.com/runemetrics/profile/profile?user={username}&activities=20"
+                    response = requests.get(url)
+                    
+                    if response.status_code == 200:
+                        profile_data = response.json()
+                        # Check if profile exists
+                        if 'error' in profile_data:
+                            error = f"Profile not found for username: {username}"
+                            continue
+                        
+                        # Add username to each activity
+                        if 'activities' in profile_data:
+                            for activity in profile_data['activities']:
+                                activity['username'] = username
+                                all_activities.append(activity)
+                    else:
+                        error = f"Error fetching profile for {username}: HTTP {response.status_code}"
+                except Exception as e:
+                    error = f"Error: {str(e)}"
+            
+            # Sort all activities by date (most recent first)
+            # The date format in the API is like "27-Apr-2023 21:13"
+            from datetime import datetime
+            
+            def parse_date(date_str):
+                try:
+                    return datetime.strptime(date_str, "%d-%b-%Y %H:%M")
+                except:
+                    # Fallback to a default date if parsing fails
+                    return datetime(1970, 1, 1)
+            
+            all_activities.sort(key=lambda x: parse_date(x.get('date', '')), reverse=True)
+            timeline_data = all_activities
+    
+    return render_template('timeline.html', title='RuneScape Activity Timeline', 
+                          timeline_data=timeline_data, usernames=usernames, 
+                          user_colors=user_colors, error=error)
+
 @app.route('/highscores', methods=['GET', 'POST'])
 def highscores():
     highscores_data = None

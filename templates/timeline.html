@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <h1>RuneScape Activity Timeline</h1>
+    <p>Enter multiple RuneScape usernames to view their combined activity timeline</p>
+</section>
+
+<section class="timeline-container">
+    <div class="timeline-search">
+        <form method="POST" action="/timeline">
+            <div class="form-group">
+                <label for="usernames">Usernames (comma-separated):</label>
+                <input type="text" id="usernames" name="usernames" placeholder="Enter RuneScape usernames, separated by commas" 
+                       value="{{ usernames if usernames else '' }}" required>
+                <button type="submit" class="btn">Generate Timeline</button>
+            </div>
+        </form>
+    </div>
+
+    {% if error %}
+    <div class="error-message">
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+
+    {% if timeline_data %}
+    <div class="timeline-data">
+        <div class="timeline-header">
+            <h2>Combined Activity Timeline</h2>
+            <div class="user-legend">
+                {% for username, color in user_colors.items() %}
+                <div class="user-color-item">
+                    <span class="color-box" style="background-color: {{ color }};"></span>
+                    <span class="username">{{ username }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="timeline">
+            {% for activity in timeline_data %}
+            <div class="timeline-item" style="background-color: {{ user_colors[activity.username] }};">
+                <div class="timeline-item-header">
+                    <span class="timeline-username">{{ activity.username }}</span>
+                    <span class="timeline-date">{{ activity.date }}</span>
+                </div>
+                <div class="timeline-item-content">
+                    <p class="timeline-text">{{ activity.text }}</p>
+                    {% if activity.details %}
+                    <p class="timeline-details">{{ activity.details }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</section>
+
+<style>
+    .timeline-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .timeline-search {
+        margin-bottom: 30px;
+    }
+    
+    .timeline-header {
+        margin-bottom: 20px;
+    }
+    
+    .user-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 15px;
+    }
+    
+    .user-color-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .color-box {
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        display: inline-block;
+    }
+    
+    .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .timeline-item {
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        opacity: 0.85;
+    }
+    
+    .timeline-item-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+    
+    .timeline-date {
+        font-size: 0.9em;
+        opacity: 0.8;
+    }
+    
+    .timeline-text {
+        margin-bottom: 5px;
+    }
+    
+    .timeline-details {
+        font-size: 0.9em;
+        opacity: 0.8;
+    }
+</style>
+{% endblock %}
