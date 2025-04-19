@@ -10,11 +10,11 @@ def home():
 
 @app.route('/tools')
 def tools():
-    return render_template('tools.html', title='Game Tools')
+    return render_template('tools.html', title='RS3 Tools')
 
 @app.route('/rs-tools')
 def rs_tools():
-    return render_template('rs_tools.html', title='RuneScape Tools')
+    return render_template('rs_tools.html', title='RS3 Player Data')
 
 @app.route('/timeline', methods=['GET', 'POST'])
 def timeline():
