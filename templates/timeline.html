@@ -40,15 +40,15 @@
 
         <div class="timeline">
             {% for activity in timeline_data %}
-            <div class="timeline-item" style="background-color: {{ user_colors[activity.username] }};">
+            <div class="timeline-item" style="background-color: {{ user_colors[activity.username] }}; opacity: 0.85;">
                 <div class="timeline-item-header">
-                    <span class="timeline-username">{{ activity.username }}</span>
-                    <span class="timeline-date">{{ activity.date }}</span>
+                    <span class="timeline-username" style="color: #ffffff; text-shadow: 0 0 2px rgba(0,0,0,0.7);">{{ activity.username }}</span>
+                    <span class="timeline-date" style="color: #ffffff; text-shadow: 0 0 2px rgba(0,0,0,0.7);">{{ activity.date }}</span>
                 </div>
                 <div class="timeline-item-content">
-                    <p class="timeline-text" style="color: #333333;">{{ activity.text }}</p>
+                    <p class="timeline-text" style="color: #ffffff; text-shadow: 0 0 2px rgba(0,0,0,0.7);">{{ activity.text }}</p>
                     {% if activity.details %}
-                    <p class="timeline-details" style="color: #333333;">{{ activity.details }}</p>
+                    <p class="timeline-details" style="color: #ffffff; text-shadow: 0 0 2px rgba(0,0,0,0.7); opacity: 0.9;">{{ activity.details }}</p>
                     {% endif %}
                 </div>
             </div>
@@ -108,6 +108,8 @@
         height: 20px;
         border-radius: 4px;
         display: inline-block;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     }
     
     .username {
