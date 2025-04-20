@@ -42,14 +42,13 @@
             {% for activity in timeline_data %}
             <div class="timeline-item" style="background-color: {{ user_colors[activity.username] }}; opacity: 0.85;">
                 <div class="timeline-item-header">
-                    <span class="timeline-username" style="color: #000000; font-weight: bold;">{{ activity.username }}</span>
-                    <span class="timeline-text" style="color: #000000; font-weight: bold;">{{ activity.text }}</span>
+                    <span class="timeline-header-left" style="color: #000000; font-weight: bold;">{{ activity.username }}: {{ activity.text }}</span>
+                    <span class="timeline-date" style="color: #000000; font-size: 0.85em;">{{ activity.date }}</span>
                 </div>
                 <div class="timeline-item-content">
                     {% if activity.details %}
                     <p class="timeline-details" style="color: #000000; margin-top: 5px;">{{ activity.details }}</p>
                     {% endif %}
-                    <p class="timeline-date" style="color: #000000; font-size: 0.85em; margin-top: 5px; text-align: right;">{{ activity.date }}</p>
                 </div>
             </div>
             {% endfor %}
@@ -139,7 +138,7 @@
         padding-bottom: 5px;
     }
     
-    .timeline-username {
+    .timeline-header-left {
         color: #000000;
         font-weight: bold;
     }
@@ -151,11 +150,6 @@
     .timeline-date {
         font-size: 0.85em;
         color: #000000;
-    }
-    
-    .timeline-text {
-        color: #000000;
-        font-weight: bold;
     }
     
     .timeline-details {
