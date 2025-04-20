@@ -37,12 +37,12 @@ def timeline():
         # Split the comma-separated usernames and remove whitespace
         username_list = [name.strip() for name in usernames.split(',') if name.strip()]
         
-        # Generate more contrasting muted colors for each username
+        # Generate muted pastel colors for each username (not ordered by value)
         colors = [
-            "#8c564b", "#c49c94", "#e377c2", "#f7b6d2", "#7f7f7f",
-            "#bcbd22", "#dbdb8d", "#17becf", "#9edae5", "#1f77b4",
-            "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a",
-            "#d62728", "#ff9896", "#9467bd", "#c5b0d5", "#8c564b"
+            "#b5cde1", "#d3b5e1", "#e1b5cd", "#cde1b5", "#e1d3b5", 
+            "#b5e1cd", "#b5e1d3", "#e1b5d3", "#b5d3e1", "#e1cdb5",
+            "#a6c8d8", "#c8a6d8", "#d8a6c8", "#c8d8a6", "#d8c8a6", 
+            "#a6d8c8", "#a6d8c8", "#d8a6c8", "#a6c8d8", "#d8c8a6"
         ]
         
         # Assign colors to usernames
