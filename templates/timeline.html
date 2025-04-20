@@ -68,10 +68,26 @@
     
     .timeline-search {
         margin-bottom: 30px;
+        background-color: var(--box-bg);
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px var(--shadow-color);
+    }
+    
+    .timeline-data {
+        background-color: var(--box-bg);
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px var(--shadow-color);
     }
     
     .timeline-header {
         margin-bottom: 20px;
+    }
+    
+    .timeline-header h2 {
+        color: var(--text-primary);
+        margin-bottom: 15px;
     }
     
     .user-legend {
@@ -94,6 +110,10 @@
         display: inline-block;
     }
     
+    .username {
+        color: var(--text-primary);
+    }
+    
     .timeline {
         display: flex;
         flex-direction: column;
@@ -114,18 +134,35 @@
         font-weight: bold;
     }
     
+    .timeline-username {
+        color: #333333;
+    }
+    
     .timeline-date {
         font-size: 0.9em;
         opacity: 0.8;
+        color: #333333;
     }
     
     .timeline-text {
         margin-bottom: 5px;
+        color: #333333;
     }
     
     .timeline-details {
         font-size: 0.9em;
         opacity: 0.8;
+        color: #333333;
+    }
+    
+    .form-group label {
+        color: var(--text-primary);
+    }
+    
+    .form-group input {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
     }
 </style>
 {% endblock %}

@@ -243,6 +243,11 @@
                 
                 document.documentElement.setAttribute('data-theme', newTheme);
                 setCookie('theme', newTheme, 365); // Save for 1 year
+                
+                // Dispatch a custom event that other scripts can listen for
+                document.dispatchEvent(new CustomEvent('themeChanged', { 
+                    detail: { theme: newTheme } 
+                }));
             });
             
             // Cookie functions
