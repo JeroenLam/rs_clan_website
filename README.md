@@ -16,8 +16,8 @@ The easiest way to run this application is using Docker Compose:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/JeroenLam/runescape-tools.git
+cd runescape-tools
 
 # Start the application
 docker-compose up -d
@@ -37,7 +37,7 @@ The application will be available at http://localhost:5000
 This project's container is automatically built and published to GitHub Container Registry using GitHub Actions. You can pull the latest image with:
 
 ```bash
-docker pull ghcr.io/yourusername/your-repo-name:latest
+docker pull ghcr.io/jeroenlam/runescape-tools:latest
 ```
 
 ### Manual Container Build
