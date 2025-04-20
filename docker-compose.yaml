@@ -2,9 +2,9 @@ version: '3'
 
 services:
   web:
-    image: ghcr.io/username/repo-name:latest
+    image: ghcr.io/jeroenlam/rs_clan_website::latest
     ports:
       - "5000:5000"
     restart: always
     environment:
-      - CLAN_NAME=Bladblazers!
+      - CLAN_NAME="Bladblazers!"
