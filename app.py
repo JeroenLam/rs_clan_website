@@ -1,20 +1,24 @@
 from flask import Flask, render_template, request, jsonify, make_response
 import requests
 import json
+import os
 
 app = Flask(__name__)
 
+# Get clan name from environment variable or use default
+clan_name = os.environ.get('CLAN_NAME', 'Bladblazers!')
+
 @app.route('/')
 def home():
-    return render_template('home.html', title='Game Tools & Overviews')
+    return render_template('home.html', title='Game Tools & Overviews', clan_name=clan_name)
 
 @app.route('/tools')
 def tools():
-    return render_template('tools.html', title='RS3 Tools')
+    return render_template('tools.html', title='RS3 Tools', clan_name=clan_name)
 
 @app.route('/rs-tools')
 def rs_tools():
-    return render_template('rs_tools.html', title='RS3 Player Data')
+    return render_template('rs_tools.html', title='RS3 Player Data', clan_name=clan_name)
 
 @app.route('/timeline', methods=['GET', 'POST'])
 def timeline():
@@ -85,7 +89,7 @@ def timeline():
     
     resp = make_response(render_template('timeline.html', title='RuneScape Activity Timeline', 
                         timeline_data=timeline_data, usernames=usernames, 
-                        user_colors=user_colors, error=error))
+                        user_colors=user_colors, error=error, clan_name=clan_name))
     
     # Set cookie if usernames were provided via POST
     if request.method == 'POST' and usernames:
@@ -121,7 +125,7 @@ def highscores():
             error = f"Error: {str(e)}"
     
     resp = make_response(render_template('highscores.html', title='RuneScape High Scores', 
-                        highscores_data=highscores_data, username=username, error=error))
+                        highscores_data=highscores_data, username=username, error=error, clan_name=clan_name))
     
     # Set cookie if username was provided via POST
     if request.method == 'POST' and username:
@@ -241,7 +245,7 @@ def compare():
     
     resp = make_response(render_template('compare.html', title='Compare RuneScape Profiles', 
                         profile_data1=profile_data1, profile_data2=profile_data2,
-                        username1=username1, username2=username2, error=error))
+                        username1=username1, username2=username2, error=error, clan_name=clan_name))
     
     # Set cookies if usernames were provided via POST
     if request.method == 'POST':
@@ -282,7 +286,7 @@ def profile():
             error = f"Error: {str(e)}"
     
     resp = make_response(render_template('profile.html', title='RuneScape Profile', 
-                        profile_data=profile_data, username=username, error=error))
+                        profile_data=profile_data, username=username, error=error, clan_name=clan_name))
     
     # Set cookie if username was provided via POST
     if request.method == 'POST' and username:
